@@ -8,6 +8,29 @@
     <packaging>war</packaging>
 
     <name>Brawan</name>
+    
+    <developers>
+        <developer>
+            <id>bruno.sbaldarena</id>
+            <name>Bruno Baldarena</name>
+        </developer>
+        
+        <developer>
+            <id>chung.ltsai</id>
+            <name>Chung Lung Tsai</name>
+        </developer>
+        
+        <developer>
+            <id>antonio.ctjunior1</id>
+            <name>Antonio Junior</name>
+        </developer>
+        
+        <developer>
+            <id>deyvid.vsilva1</id>
+            <name>Deyvid Vieira</name>
+        </developer>
+    </developers>
+   
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
