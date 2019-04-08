@@ -13,7 +13,7 @@
         <title>Cadastro Cliente</title>
     </head>
     <body>
-        <form method="post" action="ClienteServlet">
+        <form action="ClienteServlet" method="post">
             <table>
 
                 <tr>
@@ -30,7 +30,7 @@
 
                 <tr>
                     <td>Nacionalidade</td>
-                    <td><input type="text" name="nome"></td>
+                    <td><input type="text" name="nacionalidade"></td>
                     <td>Sexo</td>
                     <td><input type="radio" name="sexo">M
                         <input type="radio" name="sexo">F

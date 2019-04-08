@@ -22,6 +22,7 @@ public class Cliente {
     private String cep;
     private String telefone;
     private String email;
+    private String endereco;
 
     /**
      * @return the nome
@@ -189,5 +190,19 @@ public class Cliente {
      */
     public void setId(long id) {
         this.id = id;
+    }
+
+    /**
+     * @return the endereco
+     */
+    public String getEndereco() {
+        return endereco;
+    }
+
+    /**
+     * @param endereco the endereco to set
+     */
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 }
