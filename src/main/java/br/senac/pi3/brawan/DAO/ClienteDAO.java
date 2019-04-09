@@ -2,15 +2,14 @@ package br.senac.pi3.brawan.DAO;
 
 import br.senac.pi3.brawan.util.ConnectionFactory;
 import br.senac.pi3.brawan.model.Cliente;
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
+import javax.swing.JOptionPane;
 
-/**
- *
- * @author Guto
- */
+
 public class ClienteDAO {
 
     Connection connection = ConnectionFactory.getConnection();
@@ -36,8 +35,8 @@ public class ClienteDAO {
             ps.setString(10,cliente.getUf());
             ps.setString(11, cliente.getCep());
 
-   
             ps.execute();
+            JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
             ps.close();
             connection.close();
                                   
@@ -48,11 +47,26 @@ public class ClienteDAO {
 
 
     public void remove(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            
+            Cliente cliente = new Cliente();
+            String SQL = "DELETE FROM CLIENTE WHERE ID =?"; 
+            PreparedStatement ps = connection.prepareStatement(SQL);
+            
+            ps.setInt(1, (int) cliente.getId());
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Cliente excluido com sucesso!");
+            
+            ps.close();
+            connection.close();
+            
+        } catch (HeadlessException | SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao excluir o produto!! " + e);
+        }
     }
-
+    
     public List<Cliente> listar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return null;
     }
 
     public Cliente buscar(int id) {

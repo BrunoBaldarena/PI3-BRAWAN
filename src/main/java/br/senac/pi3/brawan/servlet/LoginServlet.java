@@ -7,21 +7,17 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
-/**
- *
- * @author Guto
- */
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -47,16 +43,17 @@ public class LoginServlet extends HttpServlet {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                response.sendRedirect("CadastroCliente.jsp");
+                response.sendRedirect("Menu.html");
+            }else{
+                JOptionPane.showMessageDialog(null, "Senha ou Usuario invalido!", "Warning",JOptionPane.WARNING_MESSAGE);
+                response.sendRedirect("index.html");        
             }
             
              ps.close();
              connection.close();
              
-
         } catch (SQLException ex) {
-            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RuntimeException(ex);
         }
     }
-
 }

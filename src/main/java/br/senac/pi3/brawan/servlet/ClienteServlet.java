@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.senac.pi3.brawan.servlet;
 
 import br.senac.pi3.brawan.DAO.ClienteDAO;
@@ -26,15 +21,17 @@ public class ClienteServlet extends HttpServlet {
             throws ServletException, IOException {
         
         //Pega os dados do parametros
-        String nome = request.getParameter("nome"); 
-        String rg = request.getParameter("rg"); 
-        String cpf = request.getParameter("cpf");  
-        String telefone = request.getParameter("telefone"); 
-        String email = request.getParameter("email");
-        String endereco = request.getParameter("endereco");
-        String bairro = request.getParameter("bairro");
-        String cidade = request.getParameter("cidade");
-        String cep = request.getParameter("cep");
+        String nome = request.getParameter("nomeCliente"); 
+        String rg = request.getParameter("rgCliente"); 
+        String cpf = request.getParameter("cpfCliente");  
+        String sexo = request.getParameter("sexoCliente"); 
+        String telefone = request.getParameter("telefoneCliente"); 
+        String email = request.getParameter("emailCliente");
+        String endereco = request.getParameter("enderecoCliente");
+        String bairro = request.getParameter("bairroCliente");
+        String cidade = request.getParameter("cidadeCliente");
+        String estado = request.getParameter("idEstadoCliente");
+        String cep = request.getParameter("cepCliente");
          
         
         
@@ -44,17 +41,18 @@ public class ClienteServlet extends HttpServlet {
         cliente.setNome(nome);
         cliente.setRg(rg);
         cliente.setCpf(cpf);
-        cliente.setSexo("M");
+        cliente.setSexo(sexo);
         cliente.setTelefone(telefone);
         cliente.setEmail(email);
         cliente.setEndereco(endereco);
         cliente.setBairro(bairro);
         cliente.setCidade(cidade);
-        cliente.setUf("SP");
+        cliente.setUf(estado);
         cliente.setCep(cep);
         
         ClienteDAO dao = new ClienteDAO();
         dao.inserir(cliente);
+        response.sendRedirect("CadastroCliente.jsp"); 
     }
 
    
