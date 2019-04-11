@@ -7,7 +7,7 @@ package br.senac.pi3.brawan.teste;
 
 import br.senac.pi3.brawan.DAO.ClienteDAO;
 import br.senac.pi3.brawan.model.Cliente;
-import br.senac.pi3.brawan.util.ConnectionFactory;
+import br.senac.pi3.brawan.utils.ConnectionUtils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;

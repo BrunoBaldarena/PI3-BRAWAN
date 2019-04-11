@@ -13,7 +13,7 @@
         <title>Cadastro Cliente</title>
     </head>
     <body>
-        <form action="ClienteServlet" method="post">
+        <form action="../CadastrarCliente" method="post">
             <table>
 
                 <tr>
@@ -102,7 +102,9 @@
                 </tr>
 
                 <tr>
-                    <td><input type="submit" value="Salvar">
+                    <td>
+                        <a href="./home.jsp"><input type="button" value="Voltar"></a>
+                        <input type="submit" value="Salvar">
                         <input type="reset" value="Cancelar"></td>
                 </tr>
 

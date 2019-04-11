@@ -5,7 +5,7 @@ package br.senac.pi3.brawan.model;
  * @author Guto
  */
 public class Cliente {
-    private long id;
+    private int id;
     private String nome;
     private String rg;
     private String cpf;
@@ -183,7 +183,7 @@ public class Cliente {
     /**
      * @param id the id to set
      */
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

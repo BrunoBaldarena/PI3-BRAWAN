@@ -4,7 +4,7 @@ package br.senac.pi3.brawan.model;
  *
  * @author Guto
  */
-public class Login {
+public class Funcionario {
     
     private String usuario;
     private String senha; 

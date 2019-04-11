@@ -12,7 +12,7 @@
         <title>Cadastro Produto</title>
     </head>
     <body>
-        <form action="ProdutoServlet" method="post">
+        <form action="../CadastrarProduto" method="post">
             <table>
                 <tr>
                     <td><label>Nome do produto</label></td>
@@ -61,9 +61,16 @@
                     <td> <textarea name="comentarioProduto" rows="5" cols="33" placeholder="Digite aqui o seu comentário.."></textarea>
                     </td>
                 </tr>
+                
+                 <tr>
+                <td><label for="imagem">Imagem do produto:</label>
+                <input type="file" id="imagem" name="imagem" accept="image/png, image/jpeg"></td>
+                </tr>
 
                 <tr>
-                    <td><input type="submit" value="Salvar">
+                    <td>
+                        <a href="./home.jsp"><input type="button" value="Voltar"></a>
+                        <input type="submit" value="Salvar">
                         <input type="reset" value="Cancelar"></td>
                 </tr>
 

@@ -2,7 +2,7 @@ package br.senac.pi3.brawan.model;
 
 
 public class Produto {
-    
+    private int id; 
     private String nomeProduto;
     private int quantidade;
     private String categoria; 
@@ -10,6 +10,7 @@ public class Produto {
     private String tamanho; 
     private String valorUnitario;
     private String descricao; 
+
 
     /**
      * @return the nomeProduto
@@ -107,6 +108,20 @@ public class Produto {
      */
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
     }
     
 }

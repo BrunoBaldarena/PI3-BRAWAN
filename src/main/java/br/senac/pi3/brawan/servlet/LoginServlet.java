@@ -1,7 +1,7 @@
 package br.senac.pi3.brawan.servlet;
 
-import br.senac.pi3.brawan.model.Login;
-import br.senac.pi3.brawan.util.ConnectionFactory;
+import br.senac.pi3.brawan.model.Funcionario;
+import br.senac.pi3.brawan.utils.ConnectionUtils;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,11 +27,11 @@ public class LoginServlet extends HttpServlet {
             String usuario = request.getParameter("usuario");
             String senha = request.getParameter("senha");
 
-            Login login = new Login();
+            Funcionario login = new Funcionario();
             login.setUsuario(usuario);
             login.setSenha(senha);
 
-            Connection connection = ConnectionFactory.getConnection();
+            Connection connection = ConnectionUtils.getConnection();
 
             String SQL = "select usuario, senha from login where usuario= ? and senha = ?";
 
@@ -43,10 +43,10 @@ public class LoginServlet extends HttpServlet {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                response.sendRedirect("Menu.html");
+                response.sendRedirect("./jsp/home.jsp");
             }else{
                 JOptionPane.showMessageDialog(null, "Senha ou Usuario invalido!", "Warning",JOptionPane.WARNING_MESSAGE);
-                response.sendRedirect("index.html");        
+                response.sendRedirect("login.jsp");        
             }
             
              ps.close();

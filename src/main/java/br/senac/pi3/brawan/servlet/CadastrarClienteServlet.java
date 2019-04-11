@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Guto
  */
-@WebServlet("/ClienteServlet")
-public class ClienteServlet extends HttpServlet {
+@WebServlet(name = "CadastrarClienteServlet", urlPatterns = {"/CadastrarCliente"})
+public class CadastrarClienteServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -52,9 +52,9 @@ public class ClienteServlet extends HttpServlet {
         
         ClienteDAO dao = new ClienteDAO();
         dao.inserir(cliente);
-        response.sendRedirect("CadastroCliente.jsp"); 
+        response.sendRedirect("./jsp/cadastroCliente.jsp"); 
+        }
+        
+        
     }
-
    
-
-}

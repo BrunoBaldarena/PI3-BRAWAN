@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Guto
  */
-@WebServlet("/ProdutoServlet")
+@WebServlet("/CadastrarProduto")
 public class ProdutoServlet extends HttpServlet {
 
     @Override
@@ -26,7 +26,8 @@ public class ProdutoServlet extends HttpServlet {
         String marca = request.getParameter("marcaProduto");
         String tamanho = request.getParameter("tamanhoProduto");
         String valorUnitario = request.getParameter("valorProduto"); 
-        String descricao = request.getParameter("comentarioProduto"); 
+        String descricao = request.getParameter("comentarioProduto");
+
         
         Produto produto = new Produto(); 
         
@@ -40,7 +41,7 @@ public class ProdutoServlet extends HttpServlet {
         
         ProdutoDAO dao = new ProdutoDAO(); 
         dao.inserir(produto);
-        response.sendRedirect("CadastroProduto.jsp");
+        response.sendRedirect("./jsp/CadastroProduto.jsp");
         
     }
 

@@ -1,4 +1,4 @@
-package br.senac.pi3.brawan.util;
+package br.senac.pi3.brawan.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,7 +7,7 @@ import java.sql.SQLException;
 Abrir conexão com banco de dados MySQL
 
  */
-public class ConnectionFactory {
+public class ConnectionUtils {
 
     public static Connection getConnection() {
 
