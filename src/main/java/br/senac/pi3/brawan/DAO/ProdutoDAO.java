@@ -29,7 +29,7 @@ public class ProdutoDAO {
 
             PreparedStatement ps = connection.prepareStatement(SQL);
 
-            ps.setString(1, produto.getNomeProduto());
+            ps.setString(1, produto.getNome());
             ps.setInt(2, produto.getQuantidade());
             ps.setString(3, produto.getCategoria());
             ps.setString(4, produto.getMarca());
@@ -58,7 +58,7 @@ public class ProdutoDAO {
             while (rs.next()) {
                 Produto produto = new Produto();
                 produto.setId(rs.getInt("ID"));
-                produto.setNomeProduto(rs.getString("NOME"));
+                produto.setNome(rs.getString("NOME"));
                 produto.setQuantidade(rs.getInt("QUANTIDADE"));
                 produto.setCategoria(rs.getString("CATEGORIA"));
                 produto.setMarca(rs.getString("MARCA"));
@@ -92,14 +92,13 @@ public class ProdutoDAO {
             while (rs.next()) {
                 Produto produto = new Produto();
                 produto.setId(rs.getInt("ID"));
-                produto.setNomeProduto(rs.getString("NOME"));
+                produto.setNome(rs.getString("NOME"));
                 produto.setQuantidade(rs.getInt("QUANTIDADE"));
                 produto.setCategoria(rs.getString("CATEGORIA"));
                 produto.setMarca(rs.getString("MARCA"));
                 produto.setTamanho(rs.getString("TAMANHO"));
                 produto.setValorUnitario(rs.getString("VL_UNITARIO"));
                 lista.add(produto);
-
             }
 
             st.close();

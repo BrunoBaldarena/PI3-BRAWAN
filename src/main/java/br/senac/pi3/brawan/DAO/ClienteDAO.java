@@ -17,6 +17,7 @@ public class ClienteDAO {
 
   
     public void inserir(Cliente cliente) {
+      
         try {
             
             String SQL = "INSERT INTO CLIENTE (nome, rg, cpf, sexo, telefone,"
@@ -36,6 +37,8 @@ public class ClienteDAO {
             ps.setString(9, cliente.getCidade());
             ps.setString(10,cliente.getUf());
             ps.setString(11, cliente.getCep());
+            
+            
 
             ps.execute();
             ps.close();
@@ -114,7 +117,7 @@ public class ClienteDAO {
                 lista.add(cliente); 
                               
             }
-            
+      
             st.close();
             connection.close();
             rs.close();

@@ -1,4 +1,4 @@
-package br.senac.pi3.brawan.servlet;
+package br.senac.pi3.brawan.controller;
 
 import br.senac.pi3.brawan.model.Funcionario;
 import br.senac.pi3.brawan.utils.ConnectionUtils;

@@ -1,9 +1,3 @@
-<%-- 
-    Document   : home
-    Created on : 11/04/2019, 09:47:50
-    Author     : Guto
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -24,11 +18,11 @@
                 </tr>
                 <tr>
 
-                    <td><a href="./consultarCliente.jsp">Consultar Cliente</a></td>    
+                    <td><a href="../ConsultarCliente">Consultar Cliente</a></td>    
                 </tr>
                 <tr>
 
-                    <td><a href="./consultarProduto.jsp">Consultar Produto</a></td>
+                    <td><a href="../ConsultarProduto">Consultar Produto</a></td>
                 </tr>
 
                 </tr>
