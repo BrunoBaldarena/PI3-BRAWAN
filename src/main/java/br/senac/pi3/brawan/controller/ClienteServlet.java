@@ -12,11 +12,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "ClienteServlet", urlPatterns = {"/CadastrarCliente", "/ConsultarCliente"})
+@WebServlet(name = "ClienteServlet", urlPatterns = {"/CadastrarCliente", "/ConsultarCliente", "/ConsultarClienteID"})
 public class ClienteServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         String pagina = request.getRequestURI();
@@ -24,12 +25,13 @@ public class ClienteServlet extends HttpServlet {
         try {
             if (pagina.endsWith("ConsultarCliente")) {
                 clienteConsultar(request, response);
+            } else if (pagina.endsWith("ConsultarClienteID")) {
+                clienteConsultarId(request, response);
             }
         } catch (Exception ex) {
             throw new ServletException(ex.getMessage());
         }
     }
-    
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -51,8 +53,8 @@ public class ClienteServlet extends HttpServlet {
     protected void clienteSalvar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        PrintWriter out=response.getWriter();  
-        
+        PrintWriter out = response.getWriter();
+
         //Pega os dados do parametros
         String nome = request.getParameter("nomeCliente");
         String rg = request.getParameter("rgCliente");
@@ -85,21 +87,34 @@ public class ClienteServlet extends HttpServlet {
         dao.inserir(cliente);
         response.sendRedirect("./jsp/cadastroCliente.jsp");
     }
-    
-     protected void clienteConsultar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, Exception {
+
+    protected void clienteConsultar(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, Exception {
         ClienteDAO dao = new ClienteDAO();
 
-        ArrayList<Cliente> cli = dao.listarTudo(); 
+        ArrayList<Cliente> cli = dao.listarTudo();
 
         RequestDispatcher rd = request.getRequestDispatcher("./jsp/consultarCliente.jsp");
         request.setAttribute("cliente", cli);
         rd.forward(request, response);
-        
+
     }
-    
+
+    protected void clienteConsultarId(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, Exception {
+
+        String req = request.getParameter("Codbusca");
+
+        int id = Integer.parseInt(req);
+        
+
+
+        ClienteDAO dao = new ClienteDAO();
+
+        ArrayList<Cliente> cli = dao.listarID(id);
+
+        RequestDispatcher rd = request.getRequestDispatcher("./jsp/consultarClienteID.jsp");
+        request.setAttribute("cliente", cli);
+        rd.forward(request, response);
+    }
 }
-
-    
-
-    
-

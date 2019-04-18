@@ -2,7 +2,6 @@ package br.senac.pi3.brawan.DAO;
 
 import br.senac.pi3.brawan.utils.ConnectionUtils;
 import br.senac.pi3.brawan.model.Cliente;
-import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -49,24 +48,6 @@ public class ClienteDAO {
         }
     }
 
-
-    public void excluir(int id) {
-        try {
-            
-            Cliente cliente = new Cliente();
-            String SQL = "DELETE FROM CLIENTE WHERE ID =?"; 
-            PreparedStatement ps = connection.prepareStatement(SQL);
-            
-            ps.setInt(1, (int) cliente.getId());
-            
-            ps.execute();
-            ps.close();
-            connection.close();
-            
-        } catch (HeadlessException | SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
     
     public ArrayList<Cliente> listarTudo() {
         String SQL = "SELECT * FROM CLIENTE";
@@ -128,11 +109,6 @@ public class ClienteDAO {
        return lista;
        
        
-    }
-
-
-    public Cliente buscar(int id) {
-        return null;
     }
 
     public void Editar(Cliente cliente) {

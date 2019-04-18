@@ -15,29 +15,28 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Guto
  */
-
-@WebServlet(name = "ProdutoServlet", urlPatterns = {"/CadastrarProduto", "/ConsultarProduto"})
+@WebServlet(name = "ProdutoServlet", urlPatterns = {"/CadastrarProduto", "/ConsultarProduto", "/ConsultarProdutoID"})
 public class ProdutoServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         String pagina = request.getRequestURI();
-        
-         try {
+
+        try {
             if (pagina.endsWith("ConsultarProduto")) {
                 produtoConsultar(request, response);
+            } else if (pagina.endsWith("ConsultarProdutoID")) {
+                produtoConsultarId(request, response);
             }
-        } catch (Exception ex) {
+        } catch (IOException | ServletException ex) {
             throw new ServletException(ex.getMessage());
         }
 
     }
-    
-    
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -51,7 +50,7 @@ public class ProdutoServlet extends HttpServlet {
             if (pagina.endsWith("CadastrarProduto")) {
                 produtoSalvar(request, response);
             }
-        } catch (Exception ex) {
+        } catch (IOException | ServletException ex) {
             throw new ServletException(ex.getMessage());
         }
 
@@ -83,19 +82,32 @@ public class ProdutoServlet extends HttpServlet {
         response.sendRedirect("./jsp/CadastroProduto.jsp");
 
     }
-    
-   protected void produtoConsultar(HttpServletRequest request, HttpServletResponse response)
+
+    protected void produtoConsultar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-       ProdutoDAO dao = new ProdutoDAO();
-       ArrayList<Produto> pro = dao.listarTudo(); 
-       
-       RequestDispatcher rd = request.getRequestDispatcher("./jsp/consultarProduto.jsp");
+
+        ProdutoDAO dao = new ProdutoDAO();
+        ArrayList<Produto> pro = dao.listarTudo();
+
+        RequestDispatcher rd = request.getRequestDispatcher("./jsp/consultarProduto.jsp");
         request.setAttribute("produto", pro);
         rd.forward(request, response);
-         
-         
-       
-   }
-   
+
+    }
+
+    protected void produtoConsultarId(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String req = request.getParameter("Codbusca");
+
+        int id = Integer.parseInt(req);
+
+        ProdutoDAO dao = new ProdutoDAO();
+
+        ArrayList<Produto> pro = dao.listarID(id);
+
+        RequestDispatcher rd = request.getRequestDispatcher("./jsp/consultarProdutoID.jsp");
+        request.setAttribute("produto", pro);
+        rd.forward(request, response);
+    }
 }

@@ -4,15 +4,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Consultar Cliente</title>
+        <title>JSP Page</title>
     </head>
     <body>
-        <form action="./ConsultarProdutoID" method="get">
-            <h1>Consultar Produto</h1><br>
-            <label>Cod. Produto</label>
-            <input type="text" name="Codbusca">
-            <button type="submit">Pesquisar</button>
-        </form>
+        <h1>Consultar produto</h1>
 
         <table border="1">
             <tr>
@@ -39,7 +34,6 @@
 
 
         </table>
-        <a href="jsp/home.jsp"><input type="button" value="Voltar"></a>
+        <a href="./ConsultarProduto"><input type="button" value="Voltar"></a>
     </body>
-
 </html>

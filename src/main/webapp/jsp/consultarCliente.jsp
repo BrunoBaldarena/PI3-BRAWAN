@@ -7,35 +7,38 @@
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Consultar Cliente</title>
-        
+
     </head>
     <body>
- 
-        <h1>Consultar Cliente</h1><br>
-   
-            <table border='1'>
+        <form action="./ConsultarClienteID" method="get">
+            <h1>Consultar Cliente</h1><br>
 
+            <label>Cod. Cliente</label>
+            <input type="text" name="Codbusca">
+            <button type="submit">Pesquisar</button>
+        </form>
+
+        <table border='1'>
+
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Telefone</th>
+                <th>E-mail</th>
+            </tr>
+
+            <c:forEach items="${cliente}" var="cli">
                 <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>CPF</th>
-                    <th>Telefone</th>
-                    <th>E-mail</th>
+                    <td><c:out value="${cli.getId()}"/></td>
+                    <td><c:out value="${cli.getNome()}"/></td>
+                    <td><c:out value="${cli.getCpf()}"/></td>
+                    <td><c:out value="${cli.getTelefone()}"/></td>
+                    <td><c:out value="${cli.getEmail()}"/></td>
                 </tr>
-                     
-                <c:forEach items="${cliente}" var="cli">
-                    
-                    <tr>
-                        <td><c:out value="${cli.getId()}"/></td>
-                        <td><c:out value="${cli.getNome()}"/></td>
-                        <td><c:out value="${cli.getCpf()}"/></td>
-                        <td><c:out value="${cli.getTelefone()}"/></td>
-                        <td><c:out value="${cli.getEmail()}"/></td>
-                    </tr>
-                    
-                </c:forEach>
-         
-            </table>
-     
+            </c:forEach>
+
+        </table>
+        <a href="jsp/home.jsp"><input type="button" value="Voltar"></a>
     </body>
 </html>
