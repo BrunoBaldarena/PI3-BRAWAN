@@ -26,6 +26,7 @@
                 <th>CPF</th>
                 <th>Telefone</th>
                 <th>E-mail</th>
+                <th>Editar</th>
             </tr>
 
             <c:forEach items="${cliente}" var="cli">
@@ -35,6 +36,8 @@
                     <td><c:out value="${cli.getCpf()}"/></td>
                     <td><c:out value="${cli.getTelefone()}"/></td>
                     <td><c:out value="${cli.getEmail()}"/></td>
+                    <td><a href="./ClienteEditar01?id=<c:out value='${cli.getId()}'/>">Editar</a></td>
+      
                 </tr>
             </c:forEach>
 

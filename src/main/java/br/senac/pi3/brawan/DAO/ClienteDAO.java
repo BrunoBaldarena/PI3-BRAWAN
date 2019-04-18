@@ -64,10 +64,8 @@ public class ClienteDAO {
                 cliente.setCpf(rs.getString("CPF"));
                 cliente.setTelefone(rs.getString("TELEFONE"));
                 cliente.setEmail(rs.getString("EMAIL"));
-                lista.add(cliente); 
-                              
+                lista.add(cliente);                
             }
-            
             st.close();
             connection.close();
             rs.close();
@@ -76,15 +74,12 @@ public class ClienteDAO {
             throw new RuntimeException(e);
         }
        return lista;
-       
-       
     }
     
      public ArrayList<Cliente> listarID(int id) {
         String SQL = "SELECT * FROM CLIENTE WHERE ID = "+ id;
         ArrayList<Cliente> lista = new ArrayList<Cliente>();
         try{
-            
            Statement st = connection.createStatement();
            ResultSet rs = st.executeQuery(SQL);
             
@@ -95,8 +90,7 @@ public class ClienteDAO {
                 cliente.setCpf(rs.getString("CPF"));
                 cliente.setTelefone(rs.getString("TELEFONE"));
                 cliente.setEmail(rs.getString("EMAIL"));
-                lista.add(cliente); 
-                              
+                lista.add(cliente);               
             }
       
             st.close();
@@ -115,24 +109,22 @@ public class ClienteDAO {
         
         try {
 
-            String SQL = "UPDATE CLIENTE SET nome =?, rg=?, cpf=?, sexo=?, "
-                    + "telefone=?, email=?, endereco=?, bairro=?, cidade=?, "
-                    + "uf=?, cep=? WHERE id =?";
+            String SQL = "UPDATE CLIENTE SET NOME=?, CPF=?, TELEFONE=?, EMAIL=? WHERE ID=?";
 
             PreparedStatement ps = connection.prepareStatement(SQL);
 
             ps.setString(1, cliente.getNome());
-            ps.setString(2, cliente.getRg());
-            ps.setString(3, cliente.getCpf());
-            ps.setString(4, cliente.getSexo());
-            ps.setString(5, cliente.getTelefone());
-            ps.setString(6, cliente.getEmail());
-            ps.setString(7, cliente.getEndereco());
-            ps.setString(8, cliente.getBairro());
-            ps.setString(9, cliente.getCidade());
-            ps.setString(10, cliente.getUf());
-            ps.setString(11, cliente.getCep());
-            ps.setInt(12, (int) cliente.getId());
+           //ps.setString(2, cliente.getRg());
+            ps.setString(2, cliente.getCpf());
+            //ps.setString(4, cliente.getSexo());
+            ps.setString(3, cliente.getTelefone());
+            ps.setString(4, cliente.getEmail());
+            //ps.setString(7, cliente.getEndereco());
+            //ps.setString(8, cliente.getBairro());
+            //ps.setString(9, cliente.getCidade());
+            //ps.setString(10, cliente.getUf());
+            //ps.setString(11, cliente.getCep());
+            ps.setInt(5, (int) cliente.getId());
 
             ps.execute();
             ps.close();

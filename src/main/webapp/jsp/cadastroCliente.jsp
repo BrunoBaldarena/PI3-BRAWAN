@@ -1,9 +1,3 @@
-<%-- 
-    Document   : CadastroCliente
-    Created on : 07/04/2019, 16:02:06
-    Author     : Guto
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 

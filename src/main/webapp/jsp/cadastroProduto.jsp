@@ -1,9 +1,3 @@
-<%-- 
-    Document   : CadatroProduto
-    Created on : 09/04/2019, 10:20:11
-    Author     : Guto
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
