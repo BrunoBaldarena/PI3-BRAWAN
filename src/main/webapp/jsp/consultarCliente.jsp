@@ -1,3 +1,4 @@
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -26,7 +27,8 @@
                 <th>CPF</th>
                 <th>Telefone</th>
                 <th>E-mail</th>
-                <th>Editar</th>
+                <th>Ações</th>
+                
             </tr>
 
             <c:forEach items="${cliente}" var="cli">
@@ -36,8 +38,10 @@
                     <td><c:out value="${cli.getCpf()}"/></td>
                     <td><c:out value="${cli.getTelefone()}"/></td>
                     <td><c:out value="${cli.getEmail()}"/></td>
-                    <td><a href="./ClienteEditar01?id=<c:out value='${cli.getId()}'/>">Editar</a></td>
-      
+                    <td><a href="./ClienteEditar01?id=<c:out value='${cli.getId()}'/>"><input type="button" value="Editar"></a>
+                        <a href="./ClienteInativar?id=<c:out value='${cli.getId()}'/>"><input type="button" value="Excluir"></a></td>
+                        
+
                 </tr>
             </c:forEach>
 

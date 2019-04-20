@@ -12,7 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "ClienteServlet", urlPatterns = {"/CadastrarCliente",
-    "/ConsultarCliente", "/ConsultarClienteID", "/ClienteEditar01", "/EditarCliente02"})
+    "/ConsultarCliente", "/ConsultarClienteID", "/ClienteEditar01",
+    "/EditarCliente02", "/ClienteInativar"})
 public class ClienteServlet extends HttpServlet {
 
     @Override
@@ -29,6 +30,8 @@ public class ClienteServlet extends HttpServlet {
                 clienteConsultarId(request, response);
             }else if (pagina.endsWith("ClienteEditar01")) {
                 clienteEditar01(request, response);
+            }else if (pagina.endsWith("ClienteInativar")) {
+                clienteInativar(request, response);
             }
         } catch (Exception ex) {
             throw new ServletException(ex.getMessage());
@@ -138,39 +141,60 @@ public class ClienteServlet extends HttpServlet {
       
       protected void clienteEditar02(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String req = request.getParameter("id");
-        //Pega os dados do parametros
+          
+        int id = Integer.parseInt(request.getParameter("id"));
         String nome = request.getParameter("nomeCliente");
-       // String rg = request.getParameter("rgCliente");
+        String rg = request.getParameter("rgCliente");
         String cpf = request.getParameter("cpfCliente");
-      //  String sexo = request.getParameter("sexoCliente");
+        String sexo = request.getParameter("sexoCliente");
         String telefone = request.getParameter("telefoneCliente");
         String email = request.getParameter("emailCliente");
-       // String endereco = request.getParameter("enderecoCliente");
-       // String bairro = request.getParameter("bairroCliente");
-       // String cidade = request.getParameter("cidadeCliente");
-       // String estado = request.getParameter("idEstadoCliente");
-       // String cep = request.getParameter("cepCliente");
-       int id = Integer.parseInt(req);
-        //Monta o OBEJTO
+        String endereco = request.getParameter("enderecoCliente");
+        String bairro = request.getParameter("bairroCliente");
+        String cidade = request.getParameter("cidadeCliente");
+        String estado = request.getParameter("idEstadoCliente");
+        String cep = request.getParameter("cepCliente");
+        
+ 
+       
         Cliente cliente = new Cliente();
           cliente.setId(id);
           cliente.setNome(nome);
-          // cliente.setRg(rg);
+          cliente.setRg(rg);
           cliente.setCpf(cpf);
-          // cliente.setSexo(sexo);
+          cliente.setSexo(sexo);
           cliente.setTelefone(telefone);
           cliente.setEmail(email);
-          // cliente.setEndereco(endereco);
-          //cliente.setBairro(bairro);
-          // cliente.setCidade(cidade);
-          // cliente.setUf(estado);
-          //  cliente.setCep(cep);
+          cliente.setEndereco(endereco);
+          cliente.setBairro(bairro);
+          cliente.setCidade(cidade);
+          cliente.setUf(estado);
+          cliente.setCep(cep);
 
         ClienteDAO dao = new ClienteDAO();
         dao.Editar(cliente);
         response.sendRedirect("./ConsultarCliente");
     }
+      
+      protected void clienteInativar(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, Exception {
+          
+  
+            String req = request.getParameter("id");
+            
+            int id = Integer.parseInt(req);
+            
+            ClienteDAO dao = new ClienteDAO();
+            Cliente cliente = new Cliente();
+            
+            cliente.setId(id);
+            dao.inativar(cliente);
+            response.sendRedirect("./ConsultarCliente");
+        
+        }
+          
+          
+      }
     
     
-}
+

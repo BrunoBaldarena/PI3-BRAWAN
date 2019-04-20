@@ -6,6 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
+    
     <body>
         <h1>Consultar produto</h1>
 
@@ -31,7 +32,6 @@
                     <td><c:out value="${pro.getValorUnitario()}"/></td>
                 </tr>
             </c:forEach>
-
 
         </table>
         <a href="./ConsultarProduto"><input type="button" value="Voltar"></a>

@@ -9,122 +9,127 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-
 public class ClienteDAO {
 
     Connection connection = ConnectionUtils.getConnection();
 
-  
     public void inserir(Cliente cliente) {
-      
+
         try {
-            
+
             String SQL = "INSERT INTO CLIENTE (nome, rg, cpf, sexo, telefone,"
-                    + " email, endereco, bairro, cidade, uf, cep) VALUES "
-                    + "(?,?,?,?,?,?,?,?,?,?,?)";
-            
+                    + " email, endereco, bairro, cidade, uf, cep, tg_status) VALUES "
+                    + "(?,?,?,?,?,?,?,?,?,?,?,0)";
+
             PreparedStatement ps = connection.prepareStatement(SQL);
-            
+
             ps.setString(1, cliente.getNome());
             ps.setString(2, cliente.getRg());
             ps.setString(3, cliente.getCpf());
             ps.setString(4, cliente.getSexo());
             ps.setString(5, cliente.getTelefone());
             ps.setString(6, cliente.getEmail());
-            ps.setString(7,cliente.getEndereco());
+            ps.setString(7, cliente.getEndereco());
             ps.setString(8, cliente.getBairro());
             ps.setString(9, cliente.getCidade());
-            ps.setString(10,cliente.getUf());
+            ps.setString(10, cliente.getUf());
             ps.setString(11, cliente.getCep());
-            
-            
 
             ps.execute();
             ps.close();
             connection.close();
-                                  
+
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
     }
 
-    
     public ArrayList<Cliente> listarTudo() {
-        String SQL = "SELECT * FROM CLIENTE";
+        String SQL = "SELECT * FROM CLIENTE WHERE TG_STATUS=0";
         ArrayList<Cliente> lista = new ArrayList<Cliente>();
-        try{
-            
-           Statement st = connection.createStatement();
-           ResultSet rs = st.executeQuery(SQL);
-            
-            while(rs.next()){
+        try {
+
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery(SQL);
+
+            while (rs.next()) {
                 Cliente cliente = new Cliente();
                 cliente.setId(rs.getInt("ID"));
                 cliente.setNome(rs.getString("NOME"));
                 cliente.setCpf(rs.getString("CPF"));
                 cliente.setTelefone(rs.getString("TELEFONE"));
                 cliente.setEmail(rs.getString("EMAIL"));
-                lista.add(cliente);                
+                lista.add(cliente);
+
             }
             st.close();
             connection.close();
             rs.close();
-            
-        }catch(SQLException e){
+
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-       return lista;
+        return lista;
     }
-    
-     public ArrayList<Cliente> listarID(int id) {
-        String SQL = "SELECT * FROM CLIENTE WHERE ID = "+ id;
+
+    public ArrayList<Cliente> listarID(int id) {
+        String SQL = "SELECT * FROM CLIENTE WHERE ID = " + id + " AND TG_STATUS=0";
         ArrayList<Cliente> lista = new ArrayList<Cliente>();
-        try{
-           Statement st = connection.createStatement();
-           ResultSet rs = st.executeQuery(SQL);
-            
-            while(rs.next()){
+        try {
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery(SQL);
+
+            while (rs.next()) {
                 Cliente cliente = new Cliente();
                 cliente.setId(rs.getInt("ID"));
                 cliente.setNome(rs.getString("NOME"));
+                cliente.setRg(rs.getString("RG"));
                 cliente.setCpf(rs.getString("CPF"));
+                cliente.setSexo(rs.getString("SEXO"));
                 cliente.setTelefone(rs.getString("TELEFONE"));
                 cliente.setEmail(rs.getString("EMAIL"));
-                lista.add(cliente);               
+                cliente.setEndereco(rs.getString("ENDERECO"));
+                cliente.setBairro(rs.getString("BAIRRO"));
+                cliente.setCidade(rs.getString("CIDADE"));
+                cliente.setUf(rs.getString("UF"));
+                cliente.setCep(rs.getString("CEP"));
+                lista.add(cliente);
+
             }
-      
+
             st.close();
             connection.close();
             rs.close();
-            
-        }catch(SQLException e){
+
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-       return lista;
-       
-       
+        return lista;
+
     }
 
     public void Editar(Cliente cliente) {
-        
+
         try {
 
-            String SQL = "UPDATE CLIENTE SET NOME=?, CPF=?, TELEFONE=?, EMAIL=? WHERE ID=?";
+            String SQL = "UPDATE CLIENTE SET NOME=?, RG=?, CPF=?, SEXO=?, "
+                    + "TELEFONE=?, EMAIL=?, ENDERECO=?, BAIRRO=?, CIDADE=?, UF=?, "
+                    + "CEP=? WHERE ID=?";
 
             PreparedStatement ps = connection.prepareStatement(SQL);
 
             ps.setString(1, cliente.getNome());
-           //ps.setString(2, cliente.getRg());
-            ps.setString(2, cliente.getCpf());
-            //ps.setString(4, cliente.getSexo());
-            ps.setString(3, cliente.getTelefone());
-            ps.setString(4, cliente.getEmail());
-            //ps.setString(7, cliente.getEndereco());
-            //ps.setString(8, cliente.getBairro());
-            //ps.setString(9, cliente.getCidade());
-            //ps.setString(10, cliente.getUf());
-            //ps.setString(11, cliente.getCep());
-            ps.setInt(5, (int) cliente.getId());
+            ps.setString(2, cliente.getRg());
+            ps.setString(3, cliente.getCpf());
+            ps.setString(4, cliente.getSexo());
+            ps.setString(5, cliente.getTelefone());
+            ps.setString(6, cliente.getEmail());
+            ps.setString(7, cliente.getEndereco());
+            ps.setString(8, cliente.getBairro());
+            ps.setString(9, cliente.getCidade());
+            ps.setString(10, cliente.getUf());
+            ps.setString(11, cliente.getCep());
+            ps.setInt(12, cliente.getId());
 
             ps.execute();
             ps.close();
@@ -134,5 +139,22 @@ public class ClienteDAO {
             throw new RuntimeException(ex);
         }
     }
-    
+
+    public void inativar(Cliente cliente)
+            throws SQLException, Exception {
+        try {
+            String sql = "UPDATE CLIENTE SET TG_STATUS =1 WHERE ID = ?";
+
+            PreparedStatement pst = connection.prepareStatement(sql);
+            pst.setInt(1, cliente.getId());
+
+            pst.execute();
+            pst.close();
+            connection.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
 }
