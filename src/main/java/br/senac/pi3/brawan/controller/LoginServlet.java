@@ -12,7 +12,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.JOptionPane;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
@@ -45,8 +44,8 @@ public class LoginServlet extends HttpServlet {
             if (rs.next()) {
                 response.sendRedirect("./jsp/home.jsp");
             }else{
-                JOptionPane.showMessageDialog(null, "Senha ou Usuario invalido!", "Warning",JOptionPane.WARNING_MESSAGE);
-                response.sendRedirect("login.jsp");        
+                
+                response.sendRedirect("/login.jsp");        
             }
             
              ps.close();
