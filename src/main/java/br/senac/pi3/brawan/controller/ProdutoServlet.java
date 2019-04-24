@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Guto
  */
 @WebServlet(name = "ProdutoServlet", urlPatterns = {"/CadastrarProduto",
-    "/ConsultarProduto", "/ConsultarProdutoID"})
+    "/ConsultarProduto", "/ConsultarProdutoID", "/ProdutoInativar", "/ProdutoEditar01", "/ProdutoEditar02"})
 public class ProdutoServlet extends HttpServlet {
 
     @Override
@@ -32,6 +32,10 @@ public class ProdutoServlet extends HttpServlet {
                 produtoConsultar(request, response);
             } else if (pagina.endsWith("ConsultarProdutoID")) {
                 produtoConsultarId(request, response);
+            } else if (pagina.endsWith("ProdutoInativar")) {
+                produtoInativar(request, response);
+            } else if (pagina.endsWith("ProdutoEditar01")) {
+                produtoEditar01(request, response);
             }
         } catch (IOException | ServletException ex) {
             throw new ServletException(ex.getMessage());
@@ -80,7 +84,7 @@ public class ProdutoServlet extends HttpServlet {
 
         ProdutoDAO dao = new ProdutoDAO();
         dao.inserir(produto);
-        response.sendRedirect("./jsp/CadastroProduto.jsp");
+        response.sendRedirect("./jsp/produto/CadastroProduto.jsp");
 
     }
 
@@ -90,7 +94,7 @@ public class ProdutoServlet extends HttpServlet {
         ProdutoDAO dao = new ProdutoDAO();
         ArrayList<Produto> pro = dao.listarTudo();
 
-        RequestDispatcher rd = request.getRequestDispatcher("./jsp/consultarProduto.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("./jsp/produto/consultarProduto.jsp");
         request.setAttribute("produto", pro);
         rd.forward(request, response);
 
@@ -101,14 +105,83 @@ public class ProdutoServlet extends HttpServlet {
 
         String req = request.getParameter("Codbusca");
 
-        int id = Integer.parseInt(req);
+        if (req.isEmpty() || req == null || req == "") {
+            response.sendRedirect("./ConsultarProduto");
+            
+        } else {
+
+            int id = Integer.parseInt(req);
+
+            ProdutoDAO dao = new ProdutoDAO();
+
+            ArrayList<Produto> pro = dao.listarID(id);
+
+            RequestDispatcher rd = request.getRequestDispatcher("./jsp/produto/consultarProdutoID.jsp");
+            request.setAttribute("produto", pro);
+            rd.forward(request, response);
+        }
+    }
+
+    protected void produtoInativar(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        try {
+            int id = Integer.parseInt(request.getParameter("id"));
+
+            Produto produto = new Produto();
+            produto.setId(id);
+            ProdutoDAO dao = new ProdutoDAO();
+            dao.inativar(produto);
+            response.sendRedirect("./ConsultarProduto");
+
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    protected void produtoEditar01(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        int id = Integer.parseInt(request.getParameter("id"));
 
         ProdutoDAO dao = new ProdutoDAO();
 
         ArrayList<Produto> pro = dao.listarID(id);
 
-        RequestDispatcher rd = request.getRequestDispatcher("./jsp/consultarProdutoID.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("./jsp/produto/editarProduto.jsp");
         request.setAttribute("produto", pro);
         rd.forward(request, response);
+
     }
+
+    protected void produtoEditar02(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        int id = Integer.parseInt(request.getParameter("id"));
+        String nome = request.getParameter("nomeProduto");
+        int quantidade = Integer.parseInt(request.getParameter("quantidadeProduto"));
+        String categoria = request.getParameter("categoriaProduto");
+        String marca = request.getParameter("marcaProduto");
+        String tamanho = request.getParameter("tamanhoProduto");
+        String valorUnitario = request.getParameter("valorProduto");
+        String descricao = request.getParameter("comentarioProduto");
+
+        Produto produto = new Produto();
+        produto.setId(id);
+        produto.setNome(nome);
+        produto.setQuantidade(quantidade);
+        produto.setCategoria(categoria);
+        produto.setMarca(marca);
+        produto.setTamanho(tamanho);
+        produto.setValorUnitario(valorUnitario);
+        produto.setDescricao(descricao);
+
+        ProdutoDAO dao = new ProdutoDAO();
+
+        dao.editar(produto);
+
+        response.sendRedirect("./ConsultarProduto");
+
+    }
+
 }

@@ -6,7 +6,7 @@
 package br.senac.pi3.brawan.teste;
 
 import br.senac.pi3.brawan.DAO.ClienteDAO;
-import br.senac.pi3.brawan.model.Cliente;
+import br.senac.pi3.brawan.model.Pessoa;
 import br.senac.pi3.brawan.utils.ConnectionUtils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -61,7 +61,7 @@ public class teste {
 */
             
             
-        Cliente cliente = new Cliente();
+        Pessoa cliente = new Pessoa();
             
         cliente.setNome("TESTE");
         cliente.setRg("TESTE");

@@ -10,11 +10,11 @@
         <form>
             <table>
                 <tr>
-                    <td><a href="./cadastroCliente.jsp">Cadastrar Cliente</a></td>
+                    <td><a href="../jsp/cliente/cadastroCliente.jsp">Cadastrar Cliente</a></td>
                 </tr>
                 <tr>
 
-                    <td><a href="./cadastroProduto.jsp">Cadastrar Produto</a></td>  
+                    <td><a href="../jsp/produto/cadastroProduto.jsp">Cadastrar Produto</a></td>  
                 </tr>
                 <tr>
 

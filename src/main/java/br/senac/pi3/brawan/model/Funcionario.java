@@ -4,7 +4,7 @@ package br.senac.pi3.brawan.model;
  *
  * @author Guto
  */
-public class Funcionario {
+public class Funcionario extends Pessoa{
     
     private String usuario;
     private String senha; 

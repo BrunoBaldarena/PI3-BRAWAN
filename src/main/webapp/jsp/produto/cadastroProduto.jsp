@@ -63,7 +63,7 @@
 
                 <tr>
                     <td>
-                        <a href="./home.jsp"><input type="button" value="Voltar"></a>
+                        <a href="../home.jsp"><input type="button" value="Voltar"></a>
                         <input type="submit" value="Salvar">
                         <input type="reset" value="Cancelar"></td>
                 </tr>

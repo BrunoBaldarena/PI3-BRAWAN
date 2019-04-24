@@ -26,7 +26,7 @@
             <div class="col-sm-8 main-section">
                 <div class="modal-content">
                     <div class="col-12 user-img">
-                        <img src="./img/logo5.png">
+                        <img src="./img/logo.png">
                     </div>
 
                     <form action="LoginServlet" method="POST" class="col-12">

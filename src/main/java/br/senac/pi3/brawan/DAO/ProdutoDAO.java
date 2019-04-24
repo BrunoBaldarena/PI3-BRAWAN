@@ -8,7 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,8 +22,8 @@ public class ProdutoDAO {
         try {
 
             String SQL = "INSERT INTO PRODUTO (nome, quantidade, categoria, "
-                    + "marca, tamanho, vl_unitario, descricao) VALUES "
-                    + "(?,?,?,?,?,?,?)";
+                    + "marca, tamanho, vl_unitario, descricao, tg_status) VALUES "
+                    + "(?,?,?,?,?,?,?,0)";
 
             PreparedStatement ps = connection.prepareStatement(SQL);
 
@@ -37,7 +36,6 @@ public class ProdutoDAO {
             ps.setString(7, produto.getDescricao());
 
             ps.execute();
-            JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!");
             ps.close();
             connection.close();
 
@@ -47,7 +45,7 @@ public class ProdutoDAO {
     }
 
     public ArrayList<Produto> listarTudo() {
-        String SQL = "SELECT * FROM PRODUTO";
+        String SQL = "SELECT * FROM PRODUTO WHERE TG_STATUS = 0";
         ArrayList<Produto> lista = new ArrayList<Produto>();
         try {
 
@@ -81,7 +79,7 @@ public class ProdutoDAO {
 
    
     public ArrayList<Produto> listarID(int id) {
-        String SQL = "SELECT * FROM PRODUTO WHERE ID = " + id;
+        String SQL = "SELECT * FROM PRODUTO WHERE ID = " + id +" AND TG_STATUS=0";
         ArrayList<Produto> lista = new ArrayList<Produto>();
         try {
 
@@ -97,6 +95,8 @@ public class ProdutoDAO {
                 produto.setMarca(rs.getString("MARCA"));
                 produto.setTamanho(rs.getString("TAMANHO"));
                 produto.setValorUnitario(rs.getString("VL_UNITARIO"));
+                produto.setDescricao(rs.getString("DESCRICAO"));
+
                 lista.add(produto);
             }
 
@@ -108,6 +108,50 @@ public class ProdutoDAO {
             throw new RuntimeException(e);
         }
         return lista;
+    }
+    
+    public void inativar(Produto produto)
+            throws SQLException, Exception {
+        try {
+            String sql = "UPDATE PRODUTO SET TG_STATUS =1 WHERE ID = ?";
+
+            PreparedStatement pst = connection.prepareStatement(sql);
+            pst.setInt(1, produto.getId());
+
+            pst.execute();
+            pst.close();
+            connection.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+    
+    public void editar(Produto produto) {
+
+        try {
+
+            String SQL = "UPDATE PRODUTO NOME=?, QUANTIDADE=?, CATEGORIA=?,MARCA=?,"
+                    + " TAMANHO=?, VL_UNITARIO=?, DESCRICAO=? WHERE ID=?"; 
+
+            PreparedStatement ps = connection.prepareStatement(SQL);
+
+            ps.setString(1, produto.getNome());
+            ps.setInt(2, produto.getQuantidade());
+            ps.setString(3, produto.getCategoria());
+            ps.setString(4, produto.getMarca());
+            ps.setString(5, produto.getTamanho());
+            ps.setString(6, produto.getValorUnitario());
+            ps.setString(7, produto.getDescricao());
+            ps.setInt(8, produto.getId());
+
+            ps.execute();
+            ps.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 
 }

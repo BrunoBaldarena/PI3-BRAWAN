@@ -4,7 +4,8 @@ package br.senac.pi3.brawan.model;
  *
  * @author Guto
  */
-public class Cliente {
+public class Pessoa {
+    
     private int id;
     private String nome;
     private String rg;

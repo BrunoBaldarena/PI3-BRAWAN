@@ -1,7 +1,7 @@
 package br.senac.pi3.brawan.DAO;
 
 import br.senac.pi3.brawan.utils.ConnectionUtils;
-import br.senac.pi3.brawan.model.Cliente;
+import br.senac.pi3.brawan.model.Pessoa;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +13,7 @@ public class ClienteDAO {
 
     Connection connection = ConnectionUtils.getConnection();
 
-    public void inserir(Cliente cliente) {
+    public void inserir(Pessoa cliente) {
 
         try {
 
@@ -44,16 +44,16 @@ public class ClienteDAO {
         }
     }
 
-    public ArrayList<Cliente> listarTudo() {
+    public ArrayList<Pessoa> listarTudo() {
         String SQL = "SELECT * FROM CLIENTE WHERE TG_STATUS=0";
-        ArrayList<Cliente> lista = new ArrayList<Cliente>();
+        ArrayList<Pessoa> lista = new ArrayList<Pessoa>();
         try {
 
             Statement st = connection.createStatement();
             ResultSet rs = st.executeQuery(SQL);
 
             while (rs.next()) {
-                Cliente cliente = new Cliente();
+                Pessoa cliente = new Pessoa();
                 cliente.setId(rs.getInt("ID"));
                 cliente.setNome(rs.getString("NOME"));
                 cliente.setCpf(rs.getString("CPF"));
@@ -72,15 +72,15 @@ public class ClienteDAO {
         return lista;
     }
 
-    public ArrayList<Cliente> listarID(int id) {
+    public ArrayList<Pessoa> listarID(int id) {
         String SQL = "SELECT * FROM CLIENTE WHERE ID = " + id + " AND TG_STATUS=0";
-        ArrayList<Cliente> lista = new ArrayList<Cliente>();
+        ArrayList<Pessoa> lista = new ArrayList<Pessoa>();
         try {
             Statement st = connection.createStatement();
             ResultSet rs = st.executeQuery(SQL);
 
             while (rs.next()) {
-                Cliente cliente = new Cliente();
+                Pessoa cliente = new Pessoa();
                 cliente.setId(rs.getInt("ID"));
                 cliente.setNome(rs.getString("NOME"));
                 cliente.setRg(rs.getString("RG"));
@@ -108,7 +108,7 @@ public class ClienteDAO {
 
     }
 
-    public void Editar(Cliente cliente) {
+    public void Editar(Pessoa cliente) {
 
         try {
 
@@ -140,7 +140,7 @@ public class ClienteDAO {
         }
     }
 
-    public void inativar(Cliente cliente)
+    public void inativar(Pessoa cliente)
             throws SQLException, Exception {
         try {
             String sql = "UPDATE CLIENTE SET TG_STATUS =1 WHERE ID = ?";
