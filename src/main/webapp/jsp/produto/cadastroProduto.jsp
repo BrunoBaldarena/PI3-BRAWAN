@@ -1,77 +1,79 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Cadastro Produto</title>
+        <meta charset="utf-8"> 
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <form action="../CadastrarProduto" method="post">
-            <table>
-                <tr>
-                    <td><label>Nome do produto</label></td>
-                    <td><input type="text" name="nomeProduto"></td>
-                </tr>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <h1>Cadastrar Produto</h1>
+                    <form action="/br.senac.pi3.brawan/CadastrarProduto" method="post">
 
-                <tr>
-                    <td><label>Quantidade</label></td>
-                    <td><input type="text" name="quantidadeProduto"></td>
-                </tr>
+                        <div class="form-group">
+                            <label for="nome">Nome do produto*</label>
+                            <input type="text" class="form-control" name="nome" id="nome" placeholder="Digite nome do produto" required>
+                        </div>
 
-                <tr>
-                    <td><label>Categoria:</label></td>
-                    <td>  <select name="categoriaProduto" id="categoriaProduto">
-                            <option  value="Categoria">Categoria</option>
-                            <option  value="Categoria2">Categoria2</option>
-                        </select></td>              
-                </tr>
+                        <div class="form-group">
+                            <label for="quantidade">Quantidade*</label>
+                            <input type="text" class="form-control" name="quantidade" id="nome" placeholder="Quantidade do produto" required>
+                        </div>
 
-                <tr>
-                    <td><label>Marca:</<label></td>
-                    <td> <select name="marcaProduto" id="marcaProduto">
-                            <option  value="Marca">Marca</option>
-                            <option  value="Marca2">Marca2</option>
-                        </select></td>   
+                        <div class="form-group col-md-8">
+                            <label for="categoriaProduto">Categoria</label>
+                            <select name="categoriaProduto" id="categoriaProduto" class="form-control">
+                                <option  value="Categoria">Categoria</option>
+                                <option  value="Categoria2">Categoria2</option>
+                            </select>
 
-                        <td><label>Tamanho:</label>
-                        <select name="tamanhoProduto" id="tamanhoProduto">
-                            <option  value="Tamanho">Tamanho</option>
-                            <option  value="Tamanho2">Tamanho2</option>
-                        </select></td>   
-                </tr>
+                        </div>
 
-                <tr>
-                    <td><label>Valor Unitario</label></td>
-                    <td><input type="text" name="valorProduto"></td>
-                </tr>
+                        <div class="form-group col-md-8">
+                            <label for="marcaProduto">Marca</label>
+                            <select name="marcaProduto" id="marcaProduto" class="form-control">
+                                <option  value="Marca">Marca</option>
+                                <option  value="Marca2">Marca2</option>
+                            </select>  
 
-                <br><br>
+                        </div>
 
-                <tr>
-                    <td><label>Descrição:</label></td>
-                </tr>
+                        <div class="form-group col-md-8">
+                            <label for="tamanhoProduto">Tamanho</label>
+                            <select name="tamanhoProduto" id="tamanhoProduto" class="form-control">
+                                <option  value="Tamanho">Tamanho</option>
+                                <option  value="Tamanho2">Tamanho2</option>
+                            </select>
+                        </div>
 
-                <tr>  
-                    <td> <textarea name="comentarioProduto" rows="5" cols="33" placeholder="Digite aqui o seu comentário.."></textarea>
-                    </td>
-                </tr>
-                
-                 <tr>
-                <td><label for="imagem">Imagem do produto:</label>
-                <input type="file" id="imagem" name="imagem" accept="image/png, image/jpeg"></td>
-                </tr>
+                        <div class="form-group">
+                            <label for="valor">Valor Unitario*</label>
+                            <input type="text" name="valor" id="valor" class="form-control" placeholder="Valor do produto" required>
+                        </div>
 
-                <tr>
-                    <td>
-                        <a href="../home.jsp"><input type="button" value="Voltar"></a>
-                        <input type="submit" value="Salvar">
-                        <input type="reset" value="Cancelar"></td>
-                </tr>
+                        <div class="form-group">
+                            <label for="comentario">Descrição</label>
+                            <textarea name="comentario" id="comentario" rows="5" cols="33" placeholder="Digite aqui o seu comentário.." class="form-control"></textarea>
+                        </div>
+
+                        <a href="../home.jsp"><input type="button" class="btn btn-outline-dark btn-lg" value="Voltar"></a>
+                        <input type="reset" class="btn btn-outline-danger btn-lg" value="Limpar">
+                        <input type="submit" class="btn btn-outline-success btn-lg" value="Salvar">
 
 
 
-            </table>
-        </form>
-
+                    </form>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

@@ -71,7 +71,7 @@
                     </tbody>
 
                 </table>
-                <a href="jsp/home.jsp"><input type="button" class="btn btn-outline-dark" value="Voltar"></a>
+                <a href="jsp/home.jsp"><input type="button" class="btn btn-outline-dark btn-lg" value="Voltar"></a>
             </div>
         </div>
 

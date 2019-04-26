@@ -70,7 +70,7 @@
                 
               
             </div>
-              <a href="./ConsultarCliente"><input type="button" class="btn btn-outline-dark" value="Voltar"></a>
+              <a href="./ConsultarCliente"><input type="button" class="btn btn-outline-dark btn-lg" value="Voltar"></a>
         </div>
 
     </body>

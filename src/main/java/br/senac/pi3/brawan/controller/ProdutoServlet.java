@@ -16,7 +16,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author Guto
  */
 @WebServlet(name = "ProdutoServlet", urlPatterns = {"/CadastrarProduto",
-    "/ConsultarProduto", "/ConsultarProdutoID", "/ProdutoInativar", "/ProdutoEditar01", "/ProdutoEditar02"})
+    "/ConsultarProduto", "/ConsultarProdutoID", "/ProdutoInativar", 
+    "/ProdutoEditar01", "/ProdutoEditar02"})
 public class ProdutoServlet extends HttpServlet {
 
     @Override
@@ -54,6 +55,9 @@ public class ProdutoServlet extends HttpServlet {
         try {
             if (pagina.endsWith("CadastrarProduto")) {
                 produtoSalvar(request, response);
+            }else if(pagina.endsWith("ProdutoEditar02")){
+                produtoEditar02(request, response);
+                
             }
         } catch (IOException | ServletException ex) {
             throw new ServletException(ex.getMessage());
@@ -64,13 +68,13 @@ public class ProdutoServlet extends HttpServlet {
     protected void produtoSalvar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String nome = request.getParameter("nomeProduto");
-        String quantidade = request.getParameter("quantidadeProduto");
+        String nome = request.getParameter("nome");
+        String quantidade = request.getParameter("quantidade");
         String categoria = request.getParameter("categoriaProduto");
         String marca = request.getParameter("marcaProduto");
         String tamanho = request.getParameter("tamanhoProduto");
-        String valorUnitario = request.getParameter("valorProduto");
-        String descricao = request.getParameter("comentarioProduto");
+        String valorUnitario = request.getParameter("valor");
+        String descricao = request.getParameter("comentario");
 
         Produto produto = new Produto();
 
@@ -84,7 +88,7 @@ public class ProdutoServlet extends HttpServlet {
 
         ProdutoDAO dao = new ProdutoDAO();
         dao.inserir(produto);
-        response.sendRedirect("./jsp/produto/CadastroProduto.jsp");
+        response.sendRedirect("./jsp/produto/cadastroProduto.jsp");
 
     }
 
@@ -107,7 +111,7 @@ public class ProdutoServlet extends HttpServlet {
 
         if (req.isEmpty() || req == null || req == "") {
             response.sendRedirect("./ConsultarProduto");
-            
+
         } else {
 
             int id = Integer.parseInt(req);
@@ -142,7 +146,9 @@ public class ProdutoServlet extends HttpServlet {
     protected void produtoEditar01(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        int id = Integer.parseInt(request.getParameter("id"));
+        String req = request.getParameter("id");
+
+        int id = Integer.parseInt(req);
 
         ProdutoDAO dao = new ProdutoDAO();
 
@@ -158,13 +164,13 @@ public class ProdutoServlet extends HttpServlet {
             throws ServletException, IOException {
 
         int id = Integer.parseInt(request.getParameter("id"));
-        String nome = request.getParameter("nomeProduto");
-        int quantidade = Integer.parseInt(request.getParameter("quantidadeProduto"));
+        String nome = request.getParameter("nome");
+        int quantidade = Integer.parseInt(request.getParameter("quantidade"));
         String categoria = request.getParameter("categoriaProduto");
         String marca = request.getParameter("marcaProduto");
         String tamanho = request.getParameter("tamanhoProduto");
-        String valorUnitario = request.getParameter("valorProduto");
-        String descricao = request.getParameter("comentarioProduto");
+        String valorUnitario = request.getParameter("valor");
+        String descricao = request.getParameter("comentario");
 
         Produto produto = new Produto();
         produto.setId(id);

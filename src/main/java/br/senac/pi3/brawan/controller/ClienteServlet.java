@@ -1,7 +1,6 @@
 package br.senac.pi3.brawan.controller;
 
 import br.senac.pi3.brawan.DAO.ClienteDAO;
-import br.senac.pi3.brawan.model.Funcionario;
 import br.senac.pi3.brawan.model.Pessoa;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -62,17 +61,17 @@ public class ClienteServlet extends HttpServlet {
             throws ServletException, IOException {
 
         //Pega os dados do parametros
-        String nome = request.getParameter("nomeCliente");
-        String rg = request.getParameter("rgCliente");
-        String cpf = request.getParameter("cpfCliente");
-        String sexo = request.getParameter("sexoCliente");
-        String telefone = request.getParameter("telefoneCliente");
-        String email = request.getParameter("emailCliente");
-        String endereco = request.getParameter("enderecoCliente");
-        String bairro = request.getParameter("bairroCliente");
-        String cidade = request.getParameter("cidadeCliente");
-        String estado = request.getParameter("idEstadoCliente");
-        String cep = request.getParameter("cepCliente");
+        String nome = request.getParameter("nome");
+        String rg = request.getParameter("rg");
+        String cpf = request.getParameter("cpf");
+        String sexo = request.getParameter("sexo");
+        String telefone = request.getParameter("telefone");
+        String email = request.getParameter("email");
+        String endereco = request.getParameter("endereco");
+        String bairro = request.getParameter("bairro");
+        String cidade = request.getParameter("cidade");
+        String estado = request.getParameter("idEstado");
+        String cep = request.getParameter("cep");
 
         //Monta o OBEJTO
         Pessoa cliente = new Pessoa();
@@ -148,17 +147,17 @@ public class ClienteServlet extends HttpServlet {
             throws ServletException, IOException {
 
         int id = Integer.parseInt(request.getParameter("id"));
-        String nome = request.getParameter("nomeCliente");
-        String rg = request.getParameter("rgCliente");
-        String cpf = request.getParameter("cpfCliente");
-        String sexo = request.getParameter("sexoCliente");
-        String telefone = request.getParameter("telefoneCliente");
-        String email = request.getParameter("emailCliente");
-        String endereco = request.getParameter("enderecoCliente");
-        String bairro = request.getParameter("bairroCliente");
-        String cidade = request.getParameter("cidadeCliente");
-        String estado = request.getParameter("idEstadoCliente");
-        String cep = request.getParameter("cepCliente");
+        String nome = request.getParameter("nome");
+        String rg = request.getParameter("rg");
+        String cpf = request.getParameter("cpf");
+        String sexo = request.getParameter("sexo");
+        String telefone = request.getParameter("telefone");
+        String email = request.getParameter("email");
+        String endereco = request.getParameter("endereco");
+        String bairro = request.getParameter("bairro");
+        String cidade = request.getParameter("cidade");
+        String estado = request.getParameter("idEstado");
+        String cep = request.getParameter("cep");
 
         Pessoa cliente = new Pessoa();
         cliente.setId(id);

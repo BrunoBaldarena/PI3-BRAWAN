@@ -63,7 +63,7 @@
 
                     </tbody>
                 </table>
-                <a href="./ConsultarProduto"><input type="button" class="btn btn-outline-dark" value="Voltar"></a>
+                <a href="./ConsultarProduto"><input type="button" class="btn btn-outline-dark btn-lg" value="Voltar"></a>
             </div>
         </div>
     </body>

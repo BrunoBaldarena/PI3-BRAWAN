@@ -131,7 +131,7 @@ public class ProdutoDAO {
 
         try {
 
-            String SQL = "UPDATE PRODUTO NOME=?, QUANTIDADE=?, CATEGORIA=?,MARCA=?,"
+            String SQL = "UPDATE PRODUTO SET NOME=?, QUANTIDADE=?, CATEGORIA=?,MARCA=?,"
                     + " TAMANHO=?, VL_UNITARIO=?, DESCRICAO=? WHERE ID=?"; 
 
             PreparedStatement ps = connection.prepareStatement(SQL);

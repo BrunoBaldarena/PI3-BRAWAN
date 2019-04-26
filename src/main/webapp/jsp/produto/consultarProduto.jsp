@@ -64,7 +64,7 @@
                                 <td><c:out value="${pro.getTamanho()}"/></td>
                                 <td><c:out value="${pro.getValorUnitario()}"/></td>
                                 <td class="text-right">
-
+                                    
                                     <a href="./ProdutoEditar01?id=<c:out value='${pro.getId()}'/>"><input type="button" class="btn btn-success" value="Editar"></a>
                                     <a href="./ProdutoInativar?id=<c:out value='${pro.getId()}'/>"><input type="button" class="btn btn-danger" value="Excluir"></a>
 
@@ -74,7 +74,7 @@
 
                     </tbody>
                 </table>
-                <a href="jsp/home.jsp"><input type="button" class="btn btn-outline-dark" value="Voltar"></a>
+                <a href="jsp/home.jsp"><input type="button" class="btn btn-outline-dark btn-lg" value="Voltar"></a>
             </div>
         </div>
     </body>

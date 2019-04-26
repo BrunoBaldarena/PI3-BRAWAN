@@ -1,83 +1,129 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Editar Cliente</title>
-    </head>
-    <body>
-        <form action="./EditarCliente02" method="post">
-       
-            <h1>Editar Cliente</h1>
 
-            <c:forEach items="${cliente}" var="cli">
-                
-                
-                <table>
-                   <tbody>
-                        <tr>
-                            <td>Código:</td>
-                            <td><input type="text" name="id" value="${cli.getId()}" size="1" readonly="readonly"></td>
-                        </tr>
-                    
-                   
-                        <tr>
-                            <td>Nome</td>
-                            <td><input type="text" name="nomeCliente" value="${cli.getNome()}"></td>
-                        </tr>
-                        <tr>
-                            <td>CPF</td>
-                            <td><input type="text" name="cpfCliente" value="${cli.getCpf()}"> </td>
-                        </tr>
-                        <tr>
-                            <td>Telefone</td>
-                            <td><input type="text" name="telefoneCliente" value="${cli.getTelefone()}"> </td>
-                        </tr>
-                        <tr>
-                            <td>E-mail</td>
-                            <td><input type="text" name="emailCliente" value="${cli.getEmail()}"> </td>
-                        </tr>
-                        <tr>
-                            <td>RG</td>
-                            <td><input type="text" name="rgCliente" value="${cli.getRg()}"></td>
-                        </tr>
-                        <tr>
-                            <td>Sexo</td>
-                            <td><input type="text" name="sexoCliente" value="${cli.getSexo()}"></td>
-                        </tr>
-                        
-                        <tr>
-                            <td>Endereco</td>
-                            <td><input type="text" name="enderecoCliente" value="${cli.getEndereco()}"></td>
-                        </tr>
-                        
-                        <tr>
-                            <td>Bairro</td>
-                            <td><input type="text" name="bairroCliente" value="${cli.getBairro()}"></td>
-                        </tr>
-                        
-                        <tr>
-                            <td>Cidade</td>
-                            <td><input type="text" name="cidadeCliente" value="${cli.getCidade()}"></td>
-                        </tr>
-                        
-                        <tr>
-                            <td>UF</td>
-                            <td><input type="text" name="idEstadoCliente" value="${cli.getUf()}"></td>
-                        </tr>
-                        
-                        <tr>
-                            <td>CEP</td>
-                            <td><input type="text" name="cepCliente" value="${cli.getCep()}"></td>
-                        </tr>
-                        
-                    </tbody>
-                </table>
-                
-            </c:forEach>
-                
-            <input type="submit" value="Salvar">
-        </form>
+
+        <meta charset="utf-8"> 
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+    </head>
+
+    <body>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <h1>Editar Cliente</h1>
+                    <form action="/br.senac.pi3.brawan/EditarCliente02" method="post">
+
+                        <c:forEach items="${cliente}" var="cli">
+
+                            <div class="form-group col-md-3">
+                                <label for="id">Cod.</label>
+                                <input type="text" class="form-control" value="${cli.getId()}" name="id" id="id" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nome">Nome*</label>
+                                <input type="text" class="form-control" value="${cli.getNome()}" name="nome" id="nome" placeholder="Nome Completo" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="rg">RG</label>
+                                <input type="text" class="form-control" value="${cli.getRg()}" name="rg" id="rg" placeholder="Digite o RG">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="cpf">CPF*</label>
+                                <input type="text" class="form-control" name="cpf" value="${cli.getCpf()}" id="cpf" placeholder="Digite o CPF" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="endereco">Endereço</label>
+                                <input type="text" class="form-control" name="endereco" value="${cli.getEndereco()}" id="endereco" placeholder="Ex: Rua antonio, Nº10">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="bairro">Bairro</label>
+                                <input type="text" class="form-control "name="bairro" value="${cli.getBairro()}" id="bairro" placeholder="Ex: Conceição">
+
+                            </div>
+
+                            <div class="form-group  col-md-4">
+                                <label for="idEstado">Estado</label>
+                                <select name="idEstado" id="idEstado" class="form-control">
+                                    <option value="${cli.getUf()}" selected><c:out value="${cli.getUf()}"/></option>>
+                                    <option  value="AC">AC</option>
+                                    <option  value="AL">AL</option>
+                                    <option  value="AM">AM</option>
+                                    <option  value="AP">AP</option>
+                                    <option  value="BA">BA</option>
+                                    <option  value="CE">CE</option>
+                                    <option  value="DF">DF</option>
+                                    <option  value="ES">ES</option>
+                                    <option  value="GO">GO</option>
+                                    <option  value="MA">MA</option>
+                                    <option  value="MG">MG</option>
+                                    <option  value="MS">MS</option>
+                                    <option  value="MT">MT</option>
+                                    <option  value="PA">PA</option>
+                                    <option  value="PB">PB</option>
+                                    <option  value="PE">PE</option>
+                                    <option  value="PI">PI</option>
+                                    <option  value="PR">PR</option>
+                                    <option  value="RJ">RJ</option>
+                                    <option  value="RN">RN</option>
+                                    <option  value="RO">RO</option>
+                                    <option  value="RR">RR</option>
+                                    <option  value="RS">RS</option>
+                                    <option  value="SC">SC</option>
+                                    <option  value="SE">SE</option>
+                                    <option  value="SP">SP</option>
+                                    <option  value="TO">TO</option>
+                                </select>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="cidade">Cidade</label>
+                                <input type="text" class="form-control" name="cidade" value="${cli.getCidade()}" id="cidade" placeholder="Ex: Barueri">
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="cep">CEP</label>
+                                <input type="text" class="form-control" name="cep" value="${cli.getCep()}" id="cep" placeholder="Digite o CEP">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="telefone">Tel/Cel</label>
+                                <td><input type="text" class="form-control" name="telefone" value="${cli.getTelefone()}" id="telefone" placeholder="(DDD) XXXXX-XXXX"</td>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">E-mail</label>
+                                <input type="email" class="form-control" name="email" value="${cli.getEmail()}" placeholder="email@outlook.com" >
+
+                            </div>
+
+                            <a href="./ConsultarCliente"><input type="button" class="btn btn-outline-dark btn-lg" value="Voltar"></a>
+                            <input type="reset" value="Limpar" class="btn btn-outline-danger btn-lg">
+                            <input type="submit" value="Salvar" class="btn btn-outline-success btn-lg">
+
+                            </div>
+                        </c:forEach>
+                    </form>
+                </div>
+            </div>
     </body>
 </html>
