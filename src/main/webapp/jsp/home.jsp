@@ -14,7 +14,7 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="../jsp/home.jsp">Brawan</a>
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/jsp/home.jsp">Brawan</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -30,8 +30,8 @@
           Cliente
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="../jsp/cliente/cadastroCliente.jsp">Cadastrar</a>
-          <a class="dropdown-item" href="../ConsultarCliente">Consultar</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath}/jsp/cliente/cadastroCliente.jsp">Cadastrar</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath}/ConsultarCliente">Consultar</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
@@ -41,8 +41,32 @@
           Produto
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="../jsp/produto/cadastroProduto.jsp">Cadastrar</a>
-          <a class="dropdown-item" href="../ConsultarProduto">Consultar</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath}/jsp/produto/cadastroProduto.jsp">Cadastrar</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath}/ConsultarProduto">Consultar</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Empresa
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="${pageContext.request.contextPath}/jsp/empresa/cadastroEmpresa.jsp">Cadastrar</a>
+          <a class="dropdown-item" href="${pageContext.request.contextPath}/ConsultarEmpresa">Consultar</a>
+          
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Funcionario
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="${pageContext.request.contextPath}/Funcionario">Cadastrar</a>
+        
+          
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
