@@ -20,7 +20,7 @@
                 <div class="col-md-5">
                     <h1>Cadastrar Funcionario</h1>
 
-                    <form action="${pageContext.request.contextPath}/" method="post">
+                    <form action="/br.senac.pi3.brawan/CadastrarFuncionario" method="post">
                         <div class="form-group">
                             <label for="nome">Nome*</label>
                             <input type="text" class="form-control" name="nome" placeholder="Nome Completo" id="nome" required>
@@ -122,12 +122,25 @@
 
                         <div class="form-group  col-md-9">
                             <label for="empresa">Empresa</label>
-                            
-                            <select name="Empresa" id="empresa" class="form-control">  
+
+                            <select name="empresa" id="empresa" class="form-control">  
                                 <c:forEach items="${empresa}" var="emp"> 
-                                    <option value="${emp.getId()}">${emp.getEmpresa()}</option>  
+                                    <option value="${emp.getEmpresa()}">${emp.getEmpresa()}</option>  
                                 </c:forEach>  
                             </select>
+
+                        </div>
+
+                        <div class="form-group  col-md-9">
+                            <label for="cargo">Cargo</label>
+                            <select name="cargo" id="cargo" class="form-control">
+                                <option value="Gerente-Global">Gerente-Global</option>
+                                <option value="Gerente-Regional">Gerente-Regional</option>
+                                <option value="Diretor">Diretor</option>
+                                <option value="Técnico">Técnico</option>
+                                <option value="Venda">Venda</option>
+                                <option value="Padrão">Padrão</option>  
+                            </select></br>            
 
                         </div>
 
@@ -145,11 +158,11 @@
                         <a href="${pageContext.request.contextPath}/jsp/home.jsp"><input type="button" class="btn btn-outline-dark btn-lg" value="Voltar"></a>
                         <input type="reset" value="Limpar" class="btn btn-outline-danger btn-lg">
                         <input type="submit" value="Salvar" class="btn btn-outline-success btn-lg">
-
-                        </div>
                     </form>
+
                 </div>
             </div>
         </div>
+
     </body>
 </html>

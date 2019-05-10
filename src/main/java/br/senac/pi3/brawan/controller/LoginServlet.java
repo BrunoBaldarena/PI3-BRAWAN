@@ -27,7 +27,7 @@ public class LoginServlet extends HttpServlet {
             String senha = request.getParameter("senha");
 
             Funcionario login = new Funcionario();
-            login.setUsuario(usuario);
+            login.setLogin(usuario);
             login.setSenha(senha);
 
             Connection connection = ConnectionUtils.getConnection();
@@ -36,7 +36,7 @@ public class LoginServlet extends HttpServlet {
 
             PreparedStatement ps = connection.prepareStatement(SQL);
 
-            ps.setString(1, login.getUsuario());
+            ps.setString(1, login.getLogin());
             ps.setString(2, login.getSenha());
 
             ResultSet rs = ps.executeQuery();

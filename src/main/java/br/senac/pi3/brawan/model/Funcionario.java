@@ -8,17 +8,17 @@ public class Funcionario extends Pessoa{
     
     private int id; 
     private String cargo;
-    private String usuario; 
+    private String login; 
     private String senha;
     private int idEmpresa;
     private String empresa;
 
-    public String getUsuario() {
-        return usuario;
+    public String getLogin() {
+        return login;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setLogin(String usuario) {
+        this.login = usuario;
     }
 
     public String getSenha() {
