@@ -23,7 +23,7 @@
             <div class="table-responsive">
 
                 <h1>Consultar Produto</h1><br>
-                <form action="./ConsultarProdutoID" method="get">
+                <form action="${pageContext.request.contextPath}/ConsultarProdutoID" method="get">
                     <div class="col-md-3">
                         <div class="input-group">
                             <input type="text" name="Codbusca" class="form-control" placeholder="Cód. Produto">
@@ -65,8 +65,8 @@
                                 <td><c:out value="${pro.getValorUnitario()}"/></td>
                                 <td class="text-right">
                                     
-                                    <a href="./ProdutoEditar01?id=<c:out value='${pro.getId()}'/>"><input type="button" class="btn btn-success" value="Editar"></a>
-                                    <a href="./ProdutoInativar?id=<c:out value='${pro.getId()}'/>"><input type="button" class="btn btn-danger" value="Excluir"></a>
+                                    <a href="${pageContext.request.contextPath}/ProdutoEditar01?id=<c:out value='${pro.getId()}'/>"><input type="button" class="btn btn-success" value="Editar"></a>
+                                    <a href="${pageContext.request.contextPath}/ProdutoInativar?id=<c:out value='${pro.getId()}'/>"><input type="button" class="btn btn-danger" value="Excluir"></a>
 
                                 </td>
                             </tr>
@@ -74,7 +74,8 @@
 
                     </tbody>
                 </table>
-                <a href="jsp/home.jsp"><input type="button" class="btn btn-outline-dark btn-lg" value="Voltar"></a>
+                <a href="${pageContext.request.contextPath}/jsp/home.jsp"><input type="button" class="btn btn-outline-dark btn-lg" value="Voltar"></a>
+                <a href="${pageContext.request.contextPath}/jsp/produto/cadastroProduto.jsp"><input type="button" class="btn btn-outline-primary btn-lg" value="Novo Produto"></a>
             </div>
         </div>
     </body>

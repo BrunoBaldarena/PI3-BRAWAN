@@ -17,7 +17,7 @@
             <div class="row">
                 <div class="col-md-5">
                     <h1>Cadastrar Produto</h1>
-                    <form action="/br.senac.pi3.brawan/CadastrarProduto" method="post">
+                    <form action="${pageContext.request.contextPath}/CadastrarProduto" method="post">
 
                         <div class="form-group">
                             <label for="nome">Nome do produto*</label>
@@ -65,7 +65,7 @@
                             <textarea name="comentario" id="comentario" rows="5" cols="33" placeholder="Digite aqui o seu comentário.." class="form-control"></textarea>
                         </div>
 
-                        <a href="../home.jsp"><input type="button" class="btn btn-outline-dark btn-lg" value="Voltar"></a>
+                        <a href="${pageContext.request.contextPath}/jsp/home.jsp"><input type="button" class="btn btn-outline-dark btn-lg" value="Voltar"></a>
                         <input type="reset" class="btn btn-outline-danger btn-lg" value="Limpar">
                         <input type="submit" class="btn btn-outline-success btn-lg" value="Salvar">
 

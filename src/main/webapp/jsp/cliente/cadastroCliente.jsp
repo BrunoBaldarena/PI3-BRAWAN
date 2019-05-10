@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="col-md-5">
                     <h1>Cadastrar Cliente</h1>
-                    <form action="/br.senac.pi3.brawan/CadastrarCliente" method="post">
+                    <form action="${pageContext.request.contextPath}/CadastrarCliente" method="post">
                         <div class="form-group">
                             <label for="nome">Nome*</label>
                             <input type="text" class="form-control" name="nome" placeholder="Nome Completo" id="nome" required>
@@ -118,14 +118,15 @@
 
                         </div>
 
-                        <a href="../home.jsp"><input type="button" class="btn btn-outline-dark btn-lg" value="Voltar"></a>
+                        <a href="${pageContext.request.contextPath}/jsp/home.jsp"><input type="button" class="btn btn-outline-dark btn-lg" value="Voltar"></a>
                         <input type="reset" value="Limpar" class="btn btn-outline-danger btn-lg">
                         <input type="submit" value="Salvar" class="btn btn-outline-success btn-lg">
 
-                        </div>
+
                     </form>
                 </div>
             </div>
         </div>
-    </body>
+    </div>
+</body>
 </html>

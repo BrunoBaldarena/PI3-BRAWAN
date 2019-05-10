@@ -69,7 +69,8 @@
                 
             </div>
             
-            <a href="jsp/home.jsp"><input type="button" class="btn btn-outline-dark btn-lg" value="Voltar"></a>
+            <a href="${pageContext.request.contextPath}/jsp/home.jsp"><input type="button" class="btn btn-outline-dark btn-lg" value="Voltar"></a>
+            <a href="${pageContext.request.contextPath}/jsp/empresa/cadastroEmpresa.jsp"><input type="button" class="btn btn-outline-primary btn-lg" value="Nova Empresa"></a>
         </div>
 
     </body>

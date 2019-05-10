@@ -20,7 +20,7 @@
                 <div class="col-md-5">
                     <h1>Cadastrar Funcionario</h1>
 
-                    <form action="/br.senac.pi3.brawan/CadastrarFuncionario" method="post">
+                    <form action="${pageContext.request.contextPath}/CadastrarFuncionario" method="post">
                         <div class="form-group">
                             <label for="nome">Nome*</label>
                             <input type="text" class="form-control" name="nome" placeholder="Nome Completo" id="nome" required>

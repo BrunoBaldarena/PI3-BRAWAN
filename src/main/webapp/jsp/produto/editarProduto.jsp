@@ -19,7 +19,7 @@
             <div class="row">
                 <div class="col-md-5">
                     <h1>Editar Produto</h1>
-                    <form action="/br.senac.pi3.brawan/ProdutoEditar02" method="post">
+                    <form action="${pageContext.request.contextPath}/ProdutoEditar02" method="post">
                         <c:forEach items="${produto}" var="pro">
                             
                             <div class="form-group col-md-3">
@@ -76,7 +76,7 @@
                                 <textarea name="comentario" id="comentario" rows="5" cols="33" placeholder="Digite aqui o seu comentário.." class="form-control"><c:out value="${pro.getDescricao()}"/></textarea>
                             </div>
 
-                            <a href="./ConsultarProduto"><input type="button" class="btn btn-outline-dark btn-lg" value="Voltar"></a>
+                            <a href="${pageContext.request.contextPath}/ConsultarProduto"><input type="button" class="btn btn-outline-dark btn-lg" value="Voltar"></a>
                             <input type="reset" class="btn btn-outline-danger btn-lg" value="Limpar">
                             <input type="submit" class="btn btn-outline-success btn-lg" value="Salvar">
 

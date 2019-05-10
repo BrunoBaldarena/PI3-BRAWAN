@@ -65,7 +65,7 @@
                                 <td><c:out value="${fun.getLogin()}"/></td>
                                 <td><c:out value="${fun.getSenha()}"/></td>
                                 <td class="text-right">
-                                    <a href="${pageContext.request.contextPath}/ClienteEditar01?id=<c:out value='${cli.getId()}'/>"><input type="button" class="btn btn-success" value="Editar "></a>
+                                    <a href="${pageContext.request.contextPath}/FuncionarioEditar01?id=<c:out value='${fun.getId()}'/>"><input type="button" class="btn btn-success" value="Editar "></a>
                                 <a href="${pageContext.request.contextPath}/FuncionarioInativar?id=<c:out value='${fun.getId()}'/>"><input type="button" class="btn btn-danger" value="Excluir"></a>
                                 </td>
                             </tr>

@@ -24,7 +24,7 @@
     <body>
         <div class="container" id="row">
             <div class="table-responsive">
-                <form action="./ConsultarClienteID" method="get">
+                <form action="${pageContext.request.contextPath}/ConsultarClienteID" method="get">
                     
                     <h1>Consultar Cliente</h1><br>
                     
@@ -63,15 +63,16 @@
                                 <td><c:out value="${cli.getTelefone()}"/></td>
                                 <td><c:out value="${cli.getEmail()}"/></td>
                                 <td class="text-right">
-                                    <a href="./ClienteEditar01?id=<c:out value='${cli.getId()}'/>"><input type="button" class="btn btn-success" value="Editar"></a>
-                                <a href="./ClienteInativar?id=<c:out value='${cli.getId()}'/>"><input type="button" class="btn btn-danger" value="Excluir"></a>
+                                    <a href="${pageContext.request.contextPath}/ClienteEditar01?id=<c:out value='${cli.getId()}'/>"><input type="button" class="btn btn-success" value="Editar"></a>
+                                <a href="${pageContext.request.contextPath}/ClienteInativar?id=<c:out value='${cli.getId()}'/>"><input type="button" class="btn btn-danger" value="Excluir"></a>
                                 </td>
                             </tr>
                         </c:forEach>
                     </tbody>
 
                 </table>
-                <a href="jsp/home.jsp"><input type="button" class="btn btn-outline-dark btn-lg" value="Voltar"></a>
+                <a href="${pageContext.request.contextPath}/jsp/home.jsp"><input type="button" class="btn btn-outline-dark btn-lg" value="Voltar"></a>
+                <a href="${pageContext.request.contextPath}/jsp/cliente/cadastroCliente.jsp"><input type="button" class="btn btn-outline-primary btn-lg" value="Novo Cliente"></a>
             </div>
         </div>
 

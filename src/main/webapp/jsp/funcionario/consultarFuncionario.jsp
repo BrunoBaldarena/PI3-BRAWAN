@@ -26,7 +26,7 @@
             <div class="table-responsive">
                 <form action="${pageContext.request.contextPath}/ConsultarFuncionarioId" method="get">
                     
-                    <h1>Consultar Funcionario</h1><br>
+                    <h1>Consultar Funcionário</h1><br>
                     
                     <div class="col-md-3">
                         <div class="input-group">
@@ -73,7 +73,7 @@
                                 <td><c:out value="${fun.getLogin()}"/></td>
                                 <td><c:out value="${fun.getSenha()}"/></td>
                                 <td class="text-right">
-                                    <a href="${pageContext.request.contextPath}/ClienteEditar01?id=<c:out value='${cli.getId()}'/>"><input type="button" class="btn btn-success" value="Editar "></a>
+                                    <a href="${pageContext.request.contextPath}/FuncionarioEditar01?id=<c:out value='${fun.getId()}'/>"><input type="button" class="btn btn-success" value="Editar "></a>
                                 <a href="${pageContext.request.contextPath}/FuncionarioInativar?id=<c:out value='${fun.getId()}'/>"><input type="button" class="btn btn-danger" value="Excluir"></a>
                                 </td>
                             </tr>
@@ -82,6 +82,7 @@
 
                 </table>
                 <a href="${pageContext.request.contextPath}/jsp/home.jsp"><input type="button" class="btn btn-outline-dark btn-lg" value="Voltar"></a>
+                <a href="${pageContext.request.contextPath}/Funcionario"><input type="button" class="btn btn-outline-primary btn-lg" value="Novo Funcionário"></a>
             </div>
         </div>
 

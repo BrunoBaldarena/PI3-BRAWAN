@@ -70,7 +70,7 @@
                 
               
             </div>
-              <a href="./ConsultarCliente"><input type="button" class="btn btn-outline-dark btn-lg" value="Voltar"></a>
+              <a href="${pageContext.request.contextPath}/ConsultarCliente"><input type="button" class="btn btn-outline-dark btn-lg" value="Voltar"></a>
         </div>
 
     </body>

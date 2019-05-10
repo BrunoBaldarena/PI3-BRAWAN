@@ -54,8 +54,8 @@
                                 <td><c:out value="${pro.getDescricao()}"/></td>
                                 <td class="text-right">
 
-                                    <a href="./ProdutoEditar01?id=<c:out value='${pro.getId()}'/>"><input type="button" class="btn btn-success" value="Editar"></a>
-                                    <a href="./ProdutoInativar?id=<c:out value='${pro.getId()}'/>"><input type="button" class="btn btn-danger" value="Excluir"></a>
+                                    <a href="${pageContext.request.contextPath}/ProdutoEditar01?id=<c:out value='${pro.getId()}'/>"><input type="button" class="btn btn-success" value="Editar"></a>
+                                    <a href="${pageContext.request.contextPath}/ProdutoInativar?id=<c:out value='${pro.getId()}'/>"><input type="button" class="btn btn-danger" value="Excluir"></a>
 
                                 </td>
                             </tr>
@@ -63,7 +63,7 @@
 
                     </tbody>
                 </table>
-                <a href="./ConsultarProduto"><input type="button" class="btn btn-outline-dark btn-lg" value="Voltar"></a>
+                <a href="${pageContext.request.contextPath}/ConsultarProduto"><input type="button" class="btn btn-outline-dark btn-lg" value="Voltar"></a>
             </div>
         </div>
     </body>

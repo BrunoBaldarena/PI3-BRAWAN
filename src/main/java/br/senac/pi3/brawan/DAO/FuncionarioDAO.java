@@ -88,7 +88,7 @@ public class FuncionarioDAO {
             ex.printStackTrace();
         }
         sqlComando = "UPDATE FUNCIONARIO SET LOGIN=?, SENHA=?, NOME=?, RG=?, CPF=?, TELEFONE=?, ENDERECO=?,"
-                + "BAIRRO=?, CIDADE=?, UF=?, CEP=?, EMAIL=?, SEXO=?, CARGO=?, EMPRESA=?, FK_EMPRESA=? WHERE (ID=?)";
+                + "BAIRRO=?, CIDADE=?, UF=?, CEP=?, EMAIL=?, SEXO=?, CARGO=?, EMPRESA=?, FK_EMPRESA=? WHERE ID=?";
 
         PreparedStatement pst = connection.prepareStatement(sqlComando);
 

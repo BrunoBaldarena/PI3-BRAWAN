@@ -88,7 +88,7 @@ public class ProdutoServlet extends HttpServlet {
 
         ProdutoDAO dao = new ProdutoDAO();
         dao.inserir(produto);
-        response.sendRedirect("./jsp/produto/cadastroProduto.jsp");
+        response.sendRedirect("./ConsultarProduto");
 
     }
 

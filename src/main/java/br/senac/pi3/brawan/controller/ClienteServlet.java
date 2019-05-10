@@ -90,7 +90,7 @@ public class ClienteServlet extends HttpServlet {
 
         ClienteDAO dao = new ClienteDAO();
         dao.inserir(cliente);
-        response.sendRedirect("./jsp/cliente/cadastroCliente.jsp");
+        response.sendRedirect("./ConsultarCliente");
     }
 
     protected void clienteConsultar(HttpServletRequest request, HttpServletResponse response)

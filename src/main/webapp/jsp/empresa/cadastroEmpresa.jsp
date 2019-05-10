@@ -104,7 +104,7 @@
 
                         </div>
 
-                        <a href="../home.jsp"><input type="button" class="btn btn-outline-dark btn-lg" value="Voltar"></a>
+                        <a href="${pageContext.request.contextPath}/jsp/home.jsp"><input type="button" class="btn btn-outline-dark btn-lg" value="Voltar"></a>
                         <input type="reset" value="Limpar" class="btn btn-outline-danger btn-lg">
                         <input type="submit" value="Salvar" class="btn btn-outline-success btn-lg">
                     </form>
