@@ -3,6 +3,7 @@ package br.senac.pi3.brawan.model;
 
 public class Produto {
     private int id; 
+    private String codigo;
     private String nome;
     private int quantidade;
     private String categoria; 
@@ -10,6 +11,15 @@ public class Produto {
     private String tamanho; 
     private String valorUnitario;
     private String descricao; 
+    private float valorTotal;
+
+    public float getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(float valorTotal) {
+        this.valorTotal = valorTotal;
+    }
 
 
     /**
@@ -124,4 +134,11 @@ public class Produto {
         this.id = id;
     }
     
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
 }

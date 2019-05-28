@@ -90,7 +90,11 @@ public class ClienteServlet extends HttpServlet {
 
         ClienteDAO dao = new ClienteDAO();
         dao.inserir(cliente);
-        response.sendRedirect("./ConsultarCliente");
+        
+        request.setAttribute("msgSucess", "Cliente cadastrado com sucesso no Sistema!");
+        request.getRequestDispatcher("./jsp/cliente/cadastroCliente.jsp")
+        .forward(request, response);
+      
     }
 
     protected void clienteConsultar(HttpServletRequest request, HttpServletResponse response)
@@ -190,7 +194,9 @@ public class ClienteServlet extends HttpServlet {
 
         cliente.setId(id);
         dao.inativar(cliente);
-        response.sendRedirect("./ConsultarCliente");
-
+        request.setAttribute("msgDelete", "Cliente Excluido com sucesso!");
+        request.getRequestDispatcher("./ConsultarCliente")
+        .forward(request, response);
+ 
     }
 }

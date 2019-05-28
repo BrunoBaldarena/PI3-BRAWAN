@@ -21,6 +21,7 @@
     </head>
 
     <body>
+                            
         <div class="container" id="row">
             <div class="table-responsive">
                 <h1>Consultar Cliente</h1>

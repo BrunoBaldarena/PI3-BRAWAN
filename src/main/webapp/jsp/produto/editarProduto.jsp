@@ -15,6 +15,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     </head>
     <body>
+        
         <div class="container">
             <div class="row">
                 <div class="col-md-5">
@@ -23,8 +24,8 @@
                         <c:forEach items="${produto}" var="pro">
                             
                             <div class="form-group col-md-3">
-                                <label for="id">Cod.</label>
-                                <input type="text" class="form-control" value="${pro.getId()}" name="id" id="id" readonly>
+                                <label for="cod">Cod.</label>
+                                <input type="text" class="form-control" value="${pro.getCodigo()}" name="cod" id="cod" readonly>
                             </div>
 
                             <div class="form-group">

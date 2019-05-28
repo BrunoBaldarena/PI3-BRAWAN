@@ -13,11 +13,17 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     </head>
     <body>
+
         <div class="container">
             <div class="row">
                 <div class="col-md-5">
                     <h1>Cadastrar Produto</h1>
                     <form action="${pageContext.request.contextPath}/CadastrarProduto" method="post">
+
+                        <div class="form-group">
+                            <label for="codigo">Cod. Produto*</label>
+                            <input type="text" class="form-control" name="codigo" id="codigo" placeholder="Insira o código do produto" onkeyup="somenteNumeros(this);" required>
+                        </div>
 
                         <div class="form-group">
                             <label for="nome">Nome do produto*</label>
@@ -26,7 +32,7 @@
 
                         <div class="form-group">
                             <label for="quantidade">Quantidade*</label>
-                            <input type="text" class="form-control" name="quantidade" id="nome" placeholder="Quantidade do produto" required>
+                            <input type="text" class="form-control" name="quantidade" id="nome" placeholder="Quantidade do produto" onkeyup="somenteNumeros(this);" required>
                         </div>
 
                         <div class="form-group col-md-8">
@@ -75,5 +81,20 @@
                 </div>
             </div>
         </div>
+
+        <script type="text/javascript">
+
+            function somenteNumeros(num) {
+                var er = /[^0-9.]/;
+                er.lastIndex = 0;
+                var campo = num;
+                if (er.test(campo.value)) {
+                    campo.value = "";
+                }
+            }
+
+
+
+        </script>
     </body>
 </html>

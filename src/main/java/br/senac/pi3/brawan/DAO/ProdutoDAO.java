@@ -22,8 +22,8 @@ public class ProdutoDAO {
         try {
 
             String SQL = "INSERT INTO PRODUTO (nome, quantidade, categoria, "
-                    + "marca, tamanho, vl_unitario, descricao, tg_status) VALUES "
-                    + "(?,?,?,?,?,?,?,0)";
+                    + "marca, tamanho, vl_unitario, descricao, tg_status, codigo) VALUES "
+                    + "(?,?,?,?,?,?,?,0,?)";
 
             PreparedStatement ps = connection.prepareStatement(SQL);
 
@@ -34,6 +34,8 @@ public class ProdutoDAO {
             ps.setString(5, produto.getTamanho());
             ps.setString(6, produto.getValorUnitario());
             ps.setString(7, produto.getDescricao());
+            ps.setString(8, produto.getCodigo());
+            
 
             ps.execute();
             ps.close();
@@ -53,8 +55,10 @@ public class ProdutoDAO {
             ResultSet rs = st.executeQuery(SQL);
 
             while (rs.next()) {
+                
                 Produto produto = new Produto();
-                produto.setId(rs.getInt("ID"));
+                
+                produto.setCodigo(rs.getString("CODIGO"));
                 produto.setNome(rs.getString("NOME"));
                 produto.setQuantidade(rs.getInt("QUANTIDADE"));
                 produto.setCategoria(rs.getString("CATEGORIA"));
@@ -78,8 +82,8 @@ public class ProdutoDAO {
     }
 
    
-    public ArrayList<Produto> listarID(int id) {
-        String SQL = "SELECT * FROM PRODUTO WHERE ID = " + id +" AND TG_STATUS=0";
+    public ArrayList<Produto> listarCod(String cod) {
+        String SQL = "SELECT * FROM PRODUTO WHERE CODIGO = " + cod +" AND TG_STATUS=0";
         ArrayList<Produto> lista = new ArrayList<Produto>();
         try {
 
@@ -88,7 +92,7 @@ public class ProdutoDAO {
 
             while (rs.next()) {
                 Produto produto = new Produto();
-                produto.setId(rs.getInt("ID"));
+                produto.setCodigo(rs.getString("CODIGO"));
                 produto.setNome(rs.getString("NOME"));
                 produto.setQuantidade(rs.getInt("QUANTIDADE"));
                 produto.setCategoria(rs.getString("CATEGORIA"));
@@ -113,10 +117,10 @@ public class ProdutoDAO {
     public void inativar(Produto produto)
             throws SQLException, Exception {
         try {
-            String sql = "UPDATE PRODUTO SET TG_STATUS =1 WHERE ID = ?";
+            String sql = "UPDATE PRODUTO SET TG_STATUS =1 WHERE CODIGO = ?";
 
             PreparedStatement pst = connection.prepareStatement(sql);
-            pst.setInt(1, produto.getId());
+            pst.setString(1, produto.getCodigo());
 
             pst.execute();
             pst.close();
@@ -132,7 +136,7 @@ public class ProdutoDAO {
         try {
 
             String SQL = "UPDATE PRODUTO SET NOME=?, QUANTIDADE=?, CATEGORIA=?,MARCA=?,"
-                    + " TAMANHO=?, VL_UNITARIO=?, DESCRICAO=? WHERE ID=?"; 
+                    + " TAMANHO=?, VL_UNITARIO=?, DESCRICAO=? WHERE CODIGO=?"; 
 
             PreparedStatement ps = connection.prepareStatement(SQL);
 
@@ -143,7 +147,7 @@ public class ProdutoDAO {
             ps.setString(5, produto.getTamanho());
             ps.setString(6, produto.getValorUnitario());
             ps.setString(7, produto.getDescricao());
-            ps.setInt(8, produto.getId());
+            ps.setString(8, produto.getCodigo());
 
             ps.execute();
             ps.close();

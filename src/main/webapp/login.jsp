@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="pt-br">
-    
+
     <head>
         <meta charset="utf-8"> 
         <title>Login Brawan</title>
@@ -22,6 +22,7 @@
     </head>
     <body>
 
+
         <div class="modal-dialog text-center">
             <div class="col-sm-8 main-section">
                 <div class="modal-content">
@@ -29,14 +30,22 @@
                         <img src="./img/logo.png">
                     </div>
 
+                    
+
+
+
                     <form action="LoginServlet" method="POST" class="col-12">
+
+
+
+
                         <div class="form-group">
                             <input type="text" name="usuario" class="form-control" placeholder="Enter Username" required>
                         </div>
                         <div class="form-group">
                             <input type="password" name="senha" class="form-control" placeholder="Enter Password" required>
                         </div>
-                        <button type="submit" class="btn"><i class="fas fa-sign-in-alt"></i>Login</button>
+                        <button type="submit" class="btn">Login</button>
                     </form>
 
 

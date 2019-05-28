@@ -17,7 +17,6 @@
 
     <body>
 
-
         <div class="container" id="row">
             <div class="table-responsive">
 
@@ -44,7 +43,7 @@
 
                         <c:forEach items="${produto}" var="pro">
                             <tr>
-                                <td><c:out value="${pro.getId()}"/></td>
+                                <td><c:out value="${pro.getCodigo()}"/></td>
                                 <td><c:out value="${pro.getNome()}"/></td>
                                 <td><c:out value="${pro.getQuantidade()}"/></td>
                                 <td><c:out value="${pro.getCategoria()}"/></td>
@@ -54,8 +53,8 @@
                                 <td><c:out value="${pro.getDescricao()}"/></td>
                                 <td class="text-right">
 
-                                    <a href="${pageContext.request.contextPath}/ProdutoEditar01?id=<c:out value='${pro.getId()}'/>"><input type="button" class="btn btn-success" value="Editar"></a>
-                                    <a href="${pageContext.request.contextPath}/ProdutoInativar?id=<c:out value='${pro.getId()}'/>"><input type="button" class="btn btn-danger" value="Excluir"></a>
+                                    <a href="${pageContext.request.contextPath}/ProdutoEditar01?cod=<c:out value='${pro.getCodigo()}'/>"><input type="button" class="btn btn-success" value="Editar"></a>
+                                    <a href="${pageContext.request.contextPath}/ProdutoInativar?cod=<c:out value='${pro.getCodigo()}'/>"><input type="button" class="btn btn-danger" value="Excluir"></a>
 
                                 </td>
                             </tr>

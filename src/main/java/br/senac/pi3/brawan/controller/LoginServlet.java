@@ -3,6 +3,7 @@ package br.senac.pi3.brawan.controller;
 import br.senac.pi3.brawan.model.Funcionario;
 import br.senac.pi3.brawan.utils.ConnectionUtils;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,12 +17,13 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 
-    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         try {
+
+            PrintWriter out = response.getWriter();
 
             String usuario = request.getParameter("usuario");
             String senha = request.getParameter("senha");
@@ -42,15 +44,20 @@ public class LoginServlet extends HttpServlet {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                response.sendRedirect("./jsp/home.jsp");
-            }else{
-                
-                response.sendRedirect("/login.jsp");        
+
+                request.getRequestDispatcher("./jsp/home.jsp")
+                        .forward(request, response);
+
+            } else {
+
+                request.setAttribute("msgError", "Usuário ou Senha inválido!");
+                request.getRequestDispatcher("./login.jsp")
+                        .forward(request, response);
             }
-            
-             ps.close();
-             connection.close();
-             
+
+            ps.close();
+            connection.close();
+
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }

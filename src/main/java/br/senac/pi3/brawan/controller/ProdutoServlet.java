@@ -68,6 +68,7 @@ public class ProdutoServlet extends HttpServlet {
     protected void produtoSalvar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        String codigo = request.getParameter("codigo"); 
         String nome = request.getParameter("nome");
         String quantidade = request.getParameter("quantidade");
         String categoria = request.getParameter("categoriaProduto");
@@ -78,6 +79,9 @@ public class ProdutoServlet extends HttpServlet {
 
         Produto produto = new Produto();
 
+        
+        
+        produto.setCodigo(codigo);
         produto.setNome(nome);
         produto.setQuantidade(Integer.parseInt(quantidade));
         produto.setCategoria(categoria);
@@ -107,18 +111,18 @@ public class ProdutoServlet extends HttpServlet {
     protected void produtoConsultarId(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String req = request.getParameter("Codbusca");
+        String cod = request.getParameter("Codbusca");
 
-        if (req.isEmpty() || req == null || req == "") {
+        if (cod.isEmpty() || cod == null || cod == "") {
             response.sendRedirect("./ConsultarProduto");
 
         } else {
 
-            int id = Integer.parseInt(req);
+
 
             ProdutoDAO dao = new ProdutoDAO();
 
-            ArrayList<Produto> pro = dao.listarID(id);
+            ArrayList<Produto> pro = dao.listarCod(cod);
 
             RequestDispatcher rd = request.getRequestDispatcher("./jsp/produto/consultarProdutoID.jsp");
             request.setAttribute("produto", pro);
@@ -130,10 +134,10 @@ public class ProdutoServlet extends HttpServlet {
             throws ServletException, IOException {
 
         try {
-            int id = Integer.parseInt(request.getParameter("id"));
+            String cod = request.getParameter("cod");
 
             Produto produto = new Produto();
-            produto.setId(id);
+            produto.setCodigo(cod);
             ProdutoDAO dao = new ProdutoDAO();
             dao.inativar(produto);
             response.sendRedirect("./ConsultarProduto");
@@ -146,13 +150,13 @@ public class ProdutoServlet extends HttpServlet {
     protected void produtoEditar01(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String req = request.getParameter("id");
+        String cod = request.getParameter("cod");
 
-        int id = Integer.parseInt(req);
+  
 
         ProdutoDAO dao = new ProdutoDAO();
 
-        ArrayList<Produto> pro = dao.listarID(id);
+        ArrayList<Produto> pro = dao.listarCod(cod);
 
         RequestDispatcher rd = request.getRequestDispatcher("./jsp/produto/editarProduto.jsp");
         request.setAttribute("produto", pro);
@@ -163,7 +167,7 @@ public class ProdutoServlet extends HttpServlet {
     protected void produtoEditar02(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        int id = Integer.parseInt(request.getParameter("id"));
+        String cod = request.getParameter("cod");
         String nome = request.getParameter("nome");
         int quantidade = Integer.parseInt(request.getParameter("quantidade"));
         String categoria = request.getParameter("categoriaProduto");
@@ -173,7 +177,7 @@ public class ProdutoServlet extends HttpServlet {
         String descricao = request.getParameter("comentario");
 
         Produto produto = new Produto();
-        produto.setId(id);
+        produto.setCodigo(cod);
         produto.setNome(nome);
         produto.setQuantidade(quantidade);
         produto.setCategoria(categoria);
