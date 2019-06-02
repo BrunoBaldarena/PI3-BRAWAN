@@ -8,7 +8,7 @@ public class Venda {
     
     private int codigoVenda;
     private Date dataVenda;
-    private Double valorTotal;
+    private float valorTotal;
     private List<ItemVenda> itens;
     private int IdCliente;
     private int idCaixa;
@@ -35,11 +35,11 @@ public class Venda {
         this.dataVenda = dataVenda;
     }
 
-    public Double getValorTotal() {
+    public float getValorTotal() {
         return valorTotal;
     }
 
-    public void setValorTotal(Double valorTotal) {
+    public void setValorTotal(float valorTotal) {
         this.valorTotal = valorTotal;
     }
 
@@ -75,7 +75,6 @@ public class Venda {
         this.quantidade = quantidade;
     }
     
-   
 
     public int getEmpresa() {
         return empresa;

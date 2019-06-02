@@ -1,18 +1,14 @@
 package br.senac.pi3.brawan.controller;
 
+import br.senac.pi3.brawan.DAO.LoginDAO;
 import br.senac.pi3.brawan.model.Funcionario;
-import br.senac.pi3.brawan.utils.ConnectionUtils;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
@@ -21,45 +17,26 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        try {
+        String usuario = request.getParameter("usuario");
+        String senhaAberta = request.getParameter("senha");
 
-            PrintWriter out = response.getWriter();
+        LoginDAO dao = new LoginDAO();
+        Funcionario login = new Funcionario();
+        login.setLogin(usuario);
+        login.setSenha(senhaAberta);
 
-            String usuario = request.getParameter("usuario");
-            String senha = request.getParameter("senha");
+        boolean retorno = dao.login(login);
 
-            Funcionario login = new Funcionario();
-            login.setLogin(usuario);
-            login.setSenha(senha);
+        if (retorno == true) {
+            HttpSession sessao = request.getSession();
+            sessao.setAttribute("usuario", usuario);
+            response.sendRedirect("./jsp/home.jsp");
 
-            Connection connection = ConnectionUtils.getConnection();
+        } else {
+            request.setAttribute("msgError", "Usuário ou Senha inválido!");
+            response.sendRedirect("./login.jsp");
 
-            String SQL = "select usuario, senha from login where usuario= ? and senha = ?";
-
-            PreparedStatement ps = connection.prepareStatement(SQL);
-
-            ps.setString(1, login.getLogin());
-            ps.setString(2, login.getSenha());
-
-            ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-
-                request.getRequestDispatcher("./jsp/home.jsp")
-                        .forward(request, response);
-
-            } else {
-
-                request.setAttribute("msgError", "Usuário ou Senha inválido!");
-                request.getRequestDispatcher("./login.jsp")
-                        .forward(request, response);
-            }
-
-            ps.close();
-            connection.close();
-
-        } catch (SQLException ex) {
-            throw new RuntimeException(ex);
         }
     }
+
 }

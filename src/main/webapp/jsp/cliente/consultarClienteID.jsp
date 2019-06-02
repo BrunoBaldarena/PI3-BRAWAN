@@ -7,7 +7,9 @@
     <head>
 
 
-        <meta charset="utf-8"> 
+        <meta charset="utf-8">
+        
+         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/form.css">
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
@@ -22,8 +24,9 @@
 
     <body>
                             
-        <div class="container" id="row">
+        <div class="container  main-section" id="row">
             <div class="table-responsive">
+                <div class="modal-content">
                 <h1>Consultar Cliente</h1>
 
                 <br><table class="table table-hover">
@@ -69,9 +72,9 @@
 
                 </table>
                 
-              
+                </div>
             </div>
-              <a href="${pageContext.request.contextPath}/ConsultarCliente"><input type="button" class="btn btn-outline-dark btn-lg" value="Voltar"></a>
+              <a href="${pageContext.request.contextPath}/ConsultarCliente"><input type="button" class="btn btn-dark btn-lg" value="Voltar"></a>
         </div>
 
     </body>

@@ -82,10 +82,14 @@
             </table>
 
             <h4>VALOR TOTAL DA COMPRA: R$ <c:out value="${total}"/></h4>
-            <a href="${pageContext.request.contextPath}/venda02"><input type="button" class="btn btn-success btn-lg" value="FINALIZAR VENDA" ></a>
+
+            <a href="${pageContext.request.contextPath}/venda02"><input type="button" class="btn btn-success btn-lg" value="Finalizar Pedido" ></a>
+
+
+
+
 
         </div>
-
     </div>
 </body>
 </html>

@@ -5,7 +5,9 @@ public class ItemVenda {
   //  private Produto produto;
     private int quantidade;
     private float valorTotalItem;
-   // private float total;
+    private float valor; 
+    private String codigoProd;
+
 
    
 
@@ -17,8 +19,7 @@ public class ItemVenda {
         this.valorTotalItem = valorTotalItem;
     }
 
-    // private int codigoVenda;
-    private String codigoProd;
+   
 
     public int getQuantidade() {
         return quantidade;

@@ -9,6 +9,8 @@
 
         <meta charset="utf-8"> 
 
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/form.css">
+
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -18,12 +20,12 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-       
+
 
     </head>
 
     <body>
-                
+
 
         <c:if test="${msgDelete != null}">
             <div class="alert alert-danger" role="alert">
@@ -34,58 +36,67 @@
             </div>
         </c:if>
 
-        <div class="container" id="row">
+        <div class="container main-section" id="row">
             <div class="table-responsive">
-                <form action="${pageContext.request.contextPath}/ConsultarClienteID" method="get">
+                <div class="modal-content">
+                    <form action="${pageContext.request.contextPath}/ConsultarClienteID" method="get">
 
-                    <h1>Consultar Cliente</h1><br>
+                        <h1>Consultar Cliente</h1><br>
 
-                    <div class="col-md-3">
-                        <div class="input-group">
-                            <input type="text" name="Codbusca" class="form-control" placeholder="Cód. Cliente">
-                            <span class="input-group-btn">
-                                <button type="submit" class="btn btn-outline-dark"><i class="fas fa-search"></i></button>
-                            </span>
+                        <div class="col-md-3">
+                            <div class="input-group">
+                                <input type="text" name="Codbusca" class="form-control" placeholder="Cód. Cliente">
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-outline-dark"><i class="fas fa-search"></i></button>
+                                </span>
+                            </div>
                         </div>
-                    </div>
 
-                </form>
+                    </form>
 
-                <br><table class="table table-hover">
+                    <br><table class="table table-hover">
 
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>ID</th>
-                            <th>Nome</th>
-                            <th>CPF</th>
-                            <th>Telefone</th>
-                            <th>E-mail</th>
-                            <th></th>
-
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <c:forEach items="${cliente}" var="cli">
-
+                        <thead class="thead-dark">
                             <tr>
-                                <td><c:out value="${cli.getId()}"/></td>
-                                <td><c:out value="${cli.getNome()}"/></td>
-                                <td><c:out value="${cli.getCpf()}"/></td>
-                                <td><c:out value="${cli.getTelefone()}"/></td>
-                                <td><c:out value="${cli.getEmail()}"/></td>
-                                <td class="text-right">
-                                    <a href="${pageContext.request.contextPath}/ClienteEditar01?id=<c:out value='${cli.getId()}'/>"><input type="button" class="btn btn-success" value="Editar"></a>
-                                    <a href="${pageContext.request.contextPath}/ClienteInativar?id=<c:out value='${cli.getId()}'/>"><input type="button" id="alerta" class="btn btn-danger" value="Excluir" ></a>
-                                </td>
-                            </tr>
-                        </c:forEach>
-                    </tbody>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>CPF</th>
+                                <th>Telefone</th>
+                                <th>E-mail</th>
+                                <th></th>
 
-                </table>
-                <a href="${pageContext.request.contextPath}/jsp/home.jsp"><input type="button" class="btn btn-outline-dark btn-lg" value="Voltar"></a>
-                <a href="${pageContext.request.contextPath}/jsp/cliente/cadastroCliente.jsp"><input type="button" class="btn btn-outline-primary btn-lg" value="Novo Cliente"></a>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <c:forEach items="${cliente}" var="cli">
+
+                                <tr>
+                                    <td><c:out value="${cli.getId()}"/></td>
+                                    <td><c:out value="${cli.getNome()}"/></td>
+                                    <td><c:out value="${cli.getCpf()}"/></td>
+                                    <td><c:out value="${cli.getTelefone()}"/></td>
+                                    <td><c:out value="${cli.getEmail()}"/></td>
+                                    <td class="text-right">
+                                        <a href="${pageContext.request.contextPath}/ClienteEditar01?id=<c:out value='${cli.getId()}'/>"><input type="button" class="btn btn-success" value="Editar"></a>
+                                        <a href="${pageContext.request.contextPath}/ClienteInativar?id=<c:out value='${cli.getId()}'/>"><input type="button" id="alerta" class="btn btn-danger" value="Excluir" ></a>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                        
+                
+
+                    </table>
+                    
+                    
+                   
+                </div>
+                    <a href="${pageContext.request.contextPath}/jsp/home.jsp"><input type="button" class="btn btn-dark btn-lg" value="Voltar"></a>
+                    <a href="${pageContext.request.contextPath}/jsp/cliente/cadastroCliente.jsp"><input type="button" class="btn btn-dark btn-lg" value="Novo Cliente"></a>
             </div>
+                    
+                             
         </div>
 
     </body>
