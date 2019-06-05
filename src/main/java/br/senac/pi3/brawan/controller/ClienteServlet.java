@@ -2,6 +2,7 @@ package br.senac.pi3.brawan.controller;
 
 import br.senac.pi3.brawan.DAO.ClienteDAO;
 import br.senac.pi3.brawan.model.Pessoa;
+import br.senac.pi3.brawan.service.validarCPF;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
@@ -72,6 +73,15 @@ public class ClienteServlet extends HttpServlet {
         String cidade = request.getParameter("cidade");
         String estado = request.getParameter("idEstado");
         String cep = request.getParameter("cep");
+        
+        
+        if (validarCPF.isValidCPF(cpf)== false) {
+            
+        request.setAttribute("msgErro", "CPF Invalido!");
+        request.getRequestDispatcher("./jsp/cliente/cadastroCliente.jsp")
+        .forward(request, response);
+            
+        }
 
         //Monta o OBEJTO
         Pessoa cliente = new Pessoa();

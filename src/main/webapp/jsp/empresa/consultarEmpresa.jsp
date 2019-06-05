@@ -26,7 +26,7 @@
         <div class="container" id="row">
             <div class="table-responsive">
                 
-                <h1>Consultar Empresa</h1><br>
+                <h1>Consultar Filial</h1><br>
                 
 
                 <br><table class="table table-hover">
@@ -34,7 +34,7 @@
                     <thead class="thead-dark">
                         <tr>
                           
-                            <th>Empresa</th>
+                            <th>Filial</th>
                             <th>Diretor</th>
                             <th>CNPJ</th>
                             <th>Tel</th>

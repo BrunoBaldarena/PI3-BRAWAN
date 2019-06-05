@@ -16,28 +16,82 @@
 
         <script type="text/javascript" src="js/jquery.mask.min.js"/></script>
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-
 
 </head>
 <body>
+    
+    <c:if test="${msgErroRepetido != null}">
+        <div class="alert alert-danger" role="alert">
+            ${msgErroRepetido}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </c:if>
+
+    <c:if test="${msgErroEstoque != null}">
+        <div class="alert alert-danger" role="alert">
+            ${msgErroEstoque}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </c:if>
+    
+    <c:if test="${msgErroCliente != null}">
+        <div class="alert alert-danger" role="alert">
+            ${msgErroCliente}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </c:if>
+    
+    <c:if test="${msgErroProduto != null}">
+        <div class="alert alert-danger" role="alert">
+            ${msgErroProduto}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </c:if>
+
+    <c:if test="${MsgVazio != null}">
+        <div class="alert alert-danger" role="alert">
+            ${MsgVazio}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </c:if>
+
+
     <div class="container" id="row">
 
         <form  action="${pageContext.request.contextPath}/venda01" method="post">
-            <div class="col-md-5">
+            <div class="col-md-3">
+
+
 
                 <h1>Carrinho</h1>
+
+                <label>CPF Cliente*</label> 
+                <input type="text" class="form-control" name="cpfCliente" value="${cpf}" maxlength="14" OnKeyPress="formatar('###.###.###/##', this)" required>
+
                 <label>Cod. Produto</label> 
-                <input type="text" class="form-control" name="CodProduto" required>
-
-                <label>Quantidade</label>
-                <input type="text" class="form-control" name="Quantidade" required>
-
-
-
-                <br><input type="submit" value="ADD" class="btn btn-success">
+                <input type="text" class="form-control" name="CodProduto" onkeyup="somenteNumeros(this);" required>
+                
             </div>
+                
+                <div class="col-md-2">
+                    <label>Quantidade</label>
+                    <input type="text" class="form-control" name="Quantidade" maxlength="3"  onkeyup="somenteNumeros(this);" required>
+                </div>
 
+                <div class="col-md-3">
+                <br><input type="submit" value="ADD" class="btn btn-primary">
+          
+                </div>
 
         </form><br>
 
@@ -61,35 +115,61 @@
 
                     <c:set var="total" value="" />
                     <c:forEach items="${lista}" var="lista">
-                        <c:forEach items="${produto}" var="produto">
+                       
                             <tr>
-                                <td><c:out value="${produto.getCodigo()}"/></td>
-                                <td><c:out value="${produto.getNome()}"/></td>
+                                <td><c:out value="${lista.getCodigoProd()}"/></td>
+                                <td><c:out value="${lista.getNome()}"/></td>
                                 <td><c:out value="${lista.getQuantidade()}"/></td>
-                                <td>R$: <c:out value="${produto.getValorUnitario()}"/></td>
+                                <td>R$: <c:out value="${lista.getValorUnitario()}"/></td>
                                 <td>R$: <c:out value="${lista.getValorTotalItem()}"/></td>
                                 <c:set var="total" value="${total + lista.getValorTotalItem()}" />      
                                 <td class="text-right">
 
-                                    <a href="${pageContext.request.contextPath}/VendaExcluir?cod=<c:out value='${lista.getCodigoProd()}'/>"><input type="button" class="btn btn-danger" value="Excluir" ></a>
+                                    <a href="${pageContext.request.contextPath}/VendaExcluir?id=<c:out value='${lista.getId()}'/>"><input type="button" class="btn btn-danger" value="Excluir" ></a>
                                 <!--    <a href="${pageContext.request.contextPath}/VendaExcluir?cod=<c:out value='${lista.getCodigoProd()}'/>"><button  class="btn btn-danger"><i class="fas fa-trash"></i></button></a> -->
 
                                 </td>
                             </tr>
-                        </c:forEach>
+                 
                     </c:forEach>
                 </tbody>
             </table>
 
             <h4>VALOR TOTAL DA COMPRA: R$ <c:out value="${total}"/></h4>
 
+            <a href="${pageContext.request.contextPath}/jsp/home.jsp"><input type="button" class="btn btn-outline-dark btn-lg" value="Voltar"></a>
             <a href="${pageContext.request.contextPath}/venda02"><input type="button" class="btn btn-success btn-lg" value="Finalizar Pedido" ></a>
-
+            
 
 
 
 
         </div>
     </div>
+
+    <script type="text/javascript">
+
+        function somenteNumeros(num) {
+            var er = /[^0-9.]/;
+            er.lastIndex = 0;
+            var campo = num;
+            if (er.test(campo.value)) {
+                campo.value = "";
+            }
+        }
+
+
+
+        function formatar(mascara, documento) {
+            var i = documento.value.length;
+            var saida = mascara.substring(0, 1);
+            var texto = mascara.substring(i);
+
+            if (texto.substring(0, 1) !== saida) {
+                documento.value += texto.substring(0, 1);
+            }
+
+        }
+    </script>
 </body>
 </html>

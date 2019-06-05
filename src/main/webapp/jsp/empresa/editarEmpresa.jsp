@@ -23,7 +23,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-5">
-                    <h1>Editar Empresa</h1>
+                    <h1>Editar Filial</h1>
                     
                     <form action="${pageContext.request.contextPath}/EditarEmpresa02" method="post">
 
@@ -35,7 +35,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="empresa">Empresa*</label>
+                                <label for="empresa">Filial*</label>
                                 <input type="text" class="form-control" value="${emp.getEmpresa()}" name="empresa" id="empresa" required>
                             </div>
 

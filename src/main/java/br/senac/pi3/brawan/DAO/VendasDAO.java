@@ -1,5 +1,6 @@
 package br.senac.pi3.brawan.DAO;
 
+import br.senac.pi3.brawan.model.ItemVenda;
 import br.senac.pi3.brawan.model.Produto;
 import br.senac.pi3.brawan.model.Venda;
 import br.senac.pi3.brawan.utils.ConnectionUtils;
@@ -60,7 +61,45 @@ public class VendasDAO {
             ps.setFloat(2, soma);
 
             ps.execute();
+
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+
+    }
+
+    public void finalizarVenda(Venda venda, Object caixa, Object cpf) {
+
+        try {
+
+            Statement buscaCaixa = connection.createStatement();
+            Statement buscaCliente = connection.createStatement();
+
+            ResultSet resultado = buscaCaixa.executeQuery("SELECT FUN.ID, FUN.FK_EMPRESA FROM FUNCIONARIO AS FUN "
+                    + "WHERE LOGIN LIKE '" + caixa + "%'");
             
+            ResultSet resultado2= buscaCliente.executeQuery("SELECT CLI.ID FROM CLIENTE AS CLI "
+                    + "WHERE CPF LIKE '"+cpf+"%'");
+
+            if (resultado != null && resultado.next()) {
+                venda.setIdCaixa(resultado.getInt("FUN.ID"));
+                venda.setEmpresa(resultado.getInt("FUN.FK_EMPRESA"));
+            }
+            
+            if (resultado2 != null && resultado2.next()) {
+                venda.setIdCliente(resultado2.getInt("CLI.ID"));
+            }
+
+            String SQL = "INSERT INTO FI_VENDA (FK_CLIENTE,FK_CAIXA,FK_EMPRESA, QUANTIDADE, DT_VENDA,VL_TOTAL,DH_INCLUSAO) VALUES "
+                    + "(?,?,?,?,NOW(),?,NOW())";
+
+            PreparedStatement ps = connection.prepareStatement(SQL);
+            ps.setInt(1, venda.getIdCliente());
+            ps.setInt(2, venda.getIdCaixa());
+            ps.setInt(3, venda.getEmpresa());
+            ps.setInt(4, venda.getQuantidade());
+            ps.setFloat(5, venda.getValorTotal());
+            ps.execute();
 
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
@@ -68,23 +107,69 @@ public class VendasDAO {
 
     }
     
-     public void finalizarVenda(Venda venda) {
+     public boolean buscarCliente(String cpf) {
+                                    
+        try {
+       
+            Statement buscaCliente = connection.createStatement();
+            
+            ResultSet resultado= buscaCliente.executeQuery("SELECT CLI.ID FROM CLIENTE AS CLI WHERE CPF LIKE '"+cpf +"%' AND TG_STATUS LIKE 0;");
+            
+            if (resultado != null && resultado.next()) {
+                return true; 
+                
+            }else{
+                return false; 
+            }
+            
+        } catch (SQLException ex) {
+           return false;
+           
+        }
+        
+    }
+     
+     public boolean buscarProduto(String cod) {
+                                    
+        try {
+       
+            Statement buscaProduto = connection.createStatement();
+            
+            ResultSet resultadoProduto= buscaProduto.executeQuery("SELECT PRO.ID FROM PRODUTO AS PRO WHERE CODIGO LIKE '"+cod+"%';");
+            
+            if (resultadoProduto != null && resultadoProduto.next()) {
+                return true; 
+                
+            }else{
+                return false; 
+            }
+            
+        } catch (SQLException ex) {
+           return false;
+           
+        }
+        
+    }
+     
+     
+     public void atualizarEstoque(int estoqueAtual, int idProduto) {
 
         try {
 
-            String SQL = "INSERT INTO FI_VENDA (FK_CLIENTE, QUANTIDADE, DT_VENDA,VL_TOTAL,DH_INCLUSAO) VALUES "
-                    + "(17,?,NOW(),?,NOW())";
+            String SQL = "UPDATE PRODUTO SET QUANTIDADE=? WHERE ID=?";
 
             PreparedStatement ps = connection.prepareStatement(SQL);
-            ps.setInt(1,venda.getQuantidade());
-            ps.setFloat(2,venda.getValorTotal());
+
+            ps.setInt(1, estoqueAtual);
+            ps.setInt(2, idProduto);
             ps.execute();
-            
 
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
-
     }
+     
+     
+     
 
 }

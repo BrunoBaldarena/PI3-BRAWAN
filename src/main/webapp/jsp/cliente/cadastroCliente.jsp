@@ -25,7 +25,15 @@
 <body>
 
 
-
+     <c:if test="${msgErro != null}">
+            <div class="alert alert-danger" role="alert">
+                ${msgErro}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </c:if>
+    
     <c:if test="${msgSucess != null}">
         <div class="alert alert-success" role="alert">
             ${msgSucess}

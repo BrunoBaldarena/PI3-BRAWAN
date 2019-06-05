@@ -3,10 +3,55 @@ package br.senac.pi3.brawan.model;
 public class ItemVenda {
 
   //  private Produto produto;
+    private int quantidadeEstoque;
+    private int id;
     private int quantidade;
     private float valorTotalItem;
     private float valor; 
     private String codigoProd;
+    private String nome;
+    private String valorUnitario;
+
+    public int getQuantidadeEstoque() {
+        return quantidadeEstoque;
+    }
+
+    public void setQuantidadeEstoque(int quantidadeEstoque) {
+        this.quantidadeEstoque = quantidadeEstoque;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public float getValor() {
+        return valor;
+    }
+
+    public void setValor(float valor) {
+        this.valor = valor;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getValorUnitario() {
+        return valorUnitario;
+    }
+
+    public void setValorUnitario(String valorUnitario) {
+        this.valorUnitario = valorUnitario;
+    }
+    
 
 
    

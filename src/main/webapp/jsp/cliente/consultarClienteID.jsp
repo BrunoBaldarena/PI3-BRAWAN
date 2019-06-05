@@ -8,8 +8,8 @@
 
 
         <meta charset="utf-8">
-        
-         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/form.css">
+
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/form.css">
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
@@ -19,63 +19,44 @@
 
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-      
+
     </head>
 
     <body>
-                            
-        <div class="container  main-section" id="row">
-            <div class="table-responsive">
-                <div class="modal-content">
-                <h1>Consultar Cliente</h1>
 
-                <br><table class="table table-hover">
+        <div class="container">
+            <div class="d-flex justify-content-center">
+                <div class="row">
+                    <div class="col-md-16 main-section" >
+                        <div class="modal-content">
+                            <h1><u>Consultar Cliente</u></h1>
 
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>ID</th>
-                            <th>Nome</th>
-                            <th>RG</th>
-                            <th>CPF</th>
-                            <th>Sexo</th>
-                            <th>Telefone</th>
-                            <th>E-mail</th>
-                            <th>Endereço</th>
-                            <th>Bairro</th>
-                            <th>Cidade</th>
-                            <th>UF</th>
-                            <th>CEP</th>
-                            <th></th>
+                            <c:forEach items="${cliente}" var="cli">
 
-                        </tr>
-                    <tbody>
-                        <c:forEach items="${cliente}" var="cli">
-                            <tr>
-                                <td><c:out value="${cli.getId()}"/></td>
-                                <td><c:out value="${cli.getNome()}"/></td>
-                                <td><c:out value="${cli.getRg()}"/></td>
-                                <td><c:out value="${cli.getCpf()}"/></td>
-                                <td><c:out value="${cli.getSexo()}"/></td>
-                                <td><c:out value="${cli.getTelefone()}"/></td>
-                                <td><c:out value="${cli.getEmail()}"/></td>
-                                <td><c:out value="${cli.getEndereco()}"/></td>
-                                <td><c:out value="${cli.getBairro()}"/></td>
-                                <td><c:out value="${cli.getCidade()}"/></td>
-                                <td><c:out value="${cli.getUf()}"/></td>
-                                <td><c:out value="${cli.getCep()}"/></td>
-                                <td><a href="./ClienteEditar01?id=<c:out value='${cli.getId()}'/>"><input type="button" class="btn btn-success" value="Editar"></a>
-                                <a href="./ClienteInativar?id=<c:out value='${cli.getId()}'/>"><input type="button" class="btn btn-danger" value="Excluir"></a></td>
-                            </tr>
-                        </c:forEach>
 
-                    </tbody>
+                                <p><h6>Nome:&nbsp;<c:out value="${cli.getNome()}"/></h6></p>
+                                <p><h6>RG:&nbsp;<c:out value="${cli.getRg()}"/></h6></p>
+                                <p><h6>CPF:&nbsp;<c:out value="${cli.getCpf()}"/></h6></p>
+                                <p><h6>Sexo:&nbsp;<c:out value="${cli.getSexo()}"/></h6></p>
+                                <p><h6>Telefone:&nbsp;<c:out value="${cli.getTelefone()}"/></h6></p>
+                                <p><h6>E-mail:&nbsp;<c:out value="${cli.getEmail()}"/></h6></p>
+                                <p><h6>Endereço:&nbsp;<c:out value="${cli.getEndereco()}"/></h6></p>
+                                <p><h6>Bairro:&nbsp;<c:out value="${cli.getBairro()}"/></h6></p>
+                                <p><h6>Cidade:&nbsp;<c:out value="${cli.getCidade()}"/></h6></p>
+                                <p><h6>UF:&nbsp;<c:out value="${cli.getUf()}"/></h6></p>
+                                <p><h6>CEP:&nbsp;<c:out value="${cli.getCep()}"/></h6></p>
 
-                </table>
-                
+                                <p>
+                                    <a href="${pageContext.request.contextPath}/ConsultarCliente"><input type="button" class="btn btn-dark btn-lg" value="Voltar"></a>&nbsp;&nbsp;&nbsp;
+                                    <a href="./ClienteEditar01?id=<c:out value='${cli.getId()}'/>"><input type="button" class="btn btn-success btn-lg" value="Editar"></a>&nbsp;&nbsp;&nbsp;
+                                    <a href="./ClienteInativar?id=<c:out value='${cli.getId()}'/>"><input type="button" class="btn btn-danger btn-lg" value="Excluir"></a>
+
+                                </p>
+                            </c:forEach>
+                        </div>
+                    </div>
                 </div>
             </div>
-              <a href="${pageContext.request.contextPath}/ConsultarCliente"><input type="button" class="btn btn-dark btn-lg" value="Voltar"></a>
         </div>
-
     </body>
 </html>

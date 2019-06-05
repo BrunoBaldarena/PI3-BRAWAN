@@ -51,7 +51,7 @@
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Empresa
+                                Filial
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="${pageContext.request.contextPath}/jsp/empresa/cadastroEmpresa.jsp">Cadastrar</a>
@@ -77,9 +77,9 @@
                                 Serviços
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="${pageContext.request.contextPath}/Logout">Logout</a>
                                 
-
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/jsp/vendas/carrinho.jsp">Venda</a>
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/Logout">Logout</a>
                                 
                             </div>
                         </li>

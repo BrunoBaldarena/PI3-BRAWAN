@@ -17,10 +17,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-5">
-                    <h1>Cadastrar Empresa</h1>
+                    <h1>Cadastrar Filial</h1>
                     <form action="${pageContext.request.contextPath}/CadastrarEmpresa" method="post">
                         <div class="form-group">
-                            <label for="empresa">Empresa*</label>
+                            <label for="empresa">Filial*</label>
                             <input type="text" class="form-control" name="empresa" placeholder="Nome da Empresa" id="empresa" required>
                         </div>
 
