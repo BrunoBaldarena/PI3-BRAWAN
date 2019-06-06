@@ -45,8 +45,11 @@
                                         <label for="categoriaProduto">Categoria</label>
                                         <select name="categoriaProduto" id="categoriaProduto" class="form-control">
                                             <option value="${pro.getCategoria()}" selected><c:out value="${pro.getCategoria()}"/></option>
-                                            <option  value="Categoria">Categoria</option>
-                                            <option  value="Categoria2">Categoria2</option>
+                                            <option  value="Camisa">Camisa</option>
+                                            <option  value="Calça">Calça</option>
+                                            <option  value="Roupa Intima">Roupa Intima</option>
+                                            <option  value="Infantil">Infantil</option>
+                                            <option  value="Acessórios">Acessórios</option>
                                         </select>
 
                                     </div>
@@ -55,8 +58,11 @@
                                         <label for="marcaProduto">Marca</label>
                                         <select name="marcaProduto" id="marcaProduto" class="form-control">
                                             <option value="${pro.getMarca()}" selected=""><c:out value="${pro.getMarca()}"/></option>
-                                            <option  value="Marca">Marca</option>
-                                            <option  value="Marca2">Marca2</option>
+                                            <option  value="Nike">Nike</option>
+                                            <option  value="Adidas">Adidas</option>
+                                            <option  value="Puma">Puma</option>
+                                            <option  value="Asics">Asics</option>
+                                            <option  value="Oakley">Oakley</option>
                                         </select>  
 
                                     </div>
@@ -65,8 +71,10 @@
                                         <label for="tamanhoProduto">Tamanho</label>
                                         <select name="tamanhoProduto" id="tamanhoProduto" class="form-control">
                                             <option value="${pro.getTamanho()}" selected><c:out value="${pro.getTamanho()}"/></option>
-                                            <option  value="Tamanho">Tamanho</option>
-                                            <option  value="Tamanho2">Tamanho2</option>
+                                            <option  value="P">P</option>
+                                            <option  value="M">M</option>
+                                            <option  value="G">G</option>
+                                            <option  value="Unico">Unico</option>
                                         </select>
                                     </div>
 
