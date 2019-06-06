@@ -16,7 +16,8 @@ import javax.servlet.http.HttpSession;
 
 
 @WebFilter(filterName = "AutorizacaoFilter",
-        servletNames = {"ClienteServlet"})
+        servletNames = {"ClienteServlet", "EmpresaServlet", "FuncionarioServlet",
+            "ProdutoServlet", "RelatorioServlet", "VendaServlet"})
 public class AutorizacaoFilter implements Filter {
     
 

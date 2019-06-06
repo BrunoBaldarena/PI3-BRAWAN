@@ -1,7 +1,6 @@
 package br.senac.pi3.brawan.DAO;
 
 import br.senac.pi3.brawan.model.Empresa;
-import br.senac.pi3.brawan.model.Pessoa;
 import br.senac.pi3.brawan.utils.ConnectionUtils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,8 +12,11 @@ import java.util.ArrayList;
 
 public class EmpresaDAO {
     
+    //Chama a conexao com o banco de dados
     Connection connection = ConnectionUtils.getConnection();
 
+    
+    // Metodo que insere os dados no banco
     public void inserir(Empresa empresa) {
 
         try {
@@ -46,6 +48,7 @@ public class EmpresaDAO {
         }
     }
 
+    //Metodo para listar todos os dados
     public ArrayList<Empresa> listarTudo() {
         String SQL = "SELECT * FROM EMPRESA WHERE TG_STATUS=0";
         ArrayList<Empresa> lista = new ArrayList<Empresa>();
@@ -81,6 +84,7 @@ public class EmpresaDAO {
         return lista;
     }
 
+    // Metodo para listar por ID 
     public ArrayList<Empresa> listarID(int id) {
         String SQL = "SELECT * FROM EMPRESA WHERE ID = " + id + " AND TG_STATUS=0";
         ArrayList<Empresa> lista = new ArrayList<Empresa>();
@@ -117,6 +121,7 @@ public class EmpresaDAO {
 
     }
 
+    //Metodo para Editar o elemento 
     public void Editar(Empresa empresa) {
 
         try {
@@ -147,6 +152,7 @@ public class EmpresaDAO {
         }
     }
 
+    //Metodo que seta 0 para TG_STATUS, inativando logicamente
     public void inativar(Empresa empresa)
             throws SQLException, Exception {
         try {

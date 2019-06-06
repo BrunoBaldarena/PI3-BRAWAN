@@ -11,6 +11,8 @@ import java.util.ArrayList;
 
 public class FuncionarioDAO {
 
+    
+    //Metodo que insere os dados no banco de dado
     public void inserir(Funcionario func) throws SQLException, Exception {
         String sqlComando = "";
 
@@ -32,7 +34,7 @@ public class FuncionarioDAO {
         sqlComando = "INSERT INTO FUNCIONARIO "
                 + "(LOGIN, SENHA, NOME, RG, CPF, TELEFONE, ENDERECO,"
                 + "BAIRRO, CIDADE, UF, CEP, EMAIL, SEXO, CARGO, EMPRESA, FK_EMPRESA,TG_STATUS)"
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0);";
+                + "VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0);";
 
         PreparedStatement pst = connection.prepareStatement(sqlComando);
 
@@ -68,6 +70,7 @@ public class FuncionarioDAO {
 
     }
 
+    // Metodo que edita os daods no banco de dados
     public void editar(Funcionario func) throws SQLException, Exception {
 
         String sqlComando = "";
@@ -122,6 +125,7 @@ public class FuncionarioDAO {
         }
     }
 
+    //Metodo que seta 0 para TG_STATUS, inativando logicamento o elemento
     public void inativar(Funcionario funcionario)
             throws SQLException, Exception {
         try {
@@ -139,6 +143,7 @@ public class FuncionarioDAO {
 
     }
 
+    //Metodo que lista todos os dados do banco de dados
     public ArrayList<Funcionario> listarTudo()
             throws SQLException, ClassNotFoundException {
 
@@ -183,6 +188,7 @@ public class FuncionarioDAO {
         return listarFunc;
     }
     
+    //Metodo que lista elemento pelo ID
     public ArrayList<Funcionario> listarID(int id)
             throws SQLException, ClassNotFoundException {
 

@@ -15,8 +15,10 @@ import java.util.ArrayList;
  */
 public class ProdutoDAO {
 
+    // Chamando a conexao com o banco de dados
     Connection connection = ConnectionUtils.getConnection();
 
+    //Metodo que insere no banco de dados
     public void inserir(Produto produto) {
 
         try {
@@ -46,6 +48,7 @@ public class ProdutoDAO {
         }
     }
 
+    //Metodo que lista todos os dados do banco de dados
     public ArrayList<Produto> listarTudo() {
         String SQL = "SELECT * FROM PRODUTO WHERE TG_STATUS = 0";
         ArrayList<Produto> lista = new ArrayList<Produto>();
@@ -81,7 +84,7 @@ public class ProdutoDAO {
 
     }
 
-   
+   //Metodo que lista determinado elemento do banco de dados
     public ArrayList<Produto> listarCod(String cod) {
         String SQL = "SELECT * FROM PRODUTO WHERE CODIGO = " + cod +" AND TG_STATUS=0";
         ArrayList<Produto> lista = new ArrayList<Produto>();
@@ -113,7 +116,8 @@ public class ProdutoDAO {
         }
         return lista;
     }
-    
+   
+    //Metodo que seta 0 para TG_STATUS, inativando logicamente
     public void inativar(Produto produto)
             throws SQLException, Exception {
         try {
@@ -131,6 +135,7 @@ public class ProdutoDAO {
 
     }
     
+    //Metodo que edita o elemento do banco de dados
     public void editar(Produto produto) {
 
         try {

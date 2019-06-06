@@ -8,6 +8,8 @@
 
 
         <meta charset="utf-8"> 
+        
+         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/form.css">
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
@@ -22,9 +24,20 @@
     </head>
 
     <body>
+        
+        <c:if test="${msgDelete != null}">
+            <div class="alert alert-danger" role="alert">
+                ${msgDelete}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </c:if>
+
                             
-        <div class="container" id="row">
+        <div class="container main-section" id="row">
             <div class="table-responsive">
+                <div class="modal-content">
                 
                 <h1>Consultar Filial</h1><br>
                 
@@ -67,11 +80,11 @@
                     </tbody>
 
                 </table>
-                
+                </div>
             </div>
             
-            <a href="${pageContext.request.contextPath}/jsp/home.jsp"><input type="button" class="btn btn-outline-dark btn-lg" value="Voltar"></a>
-            <a href="${pageContext.request.contextPath}/jsp/empresa/cadastroEmpresa.jsp"><input type="button" class="btn btn-outline-primary btn-lg" value="Nova Empresa"></a>
+            <a href="${pageContext.request.contextPath}/jsp/home.jsp"><input type="button" class="btn btn-dark btn-lg" value="Voltar"></a>
+            <a href="${pageContext.request.contextPath}/jsp/empresa/cadastroEmpresa.jsp"><input type="button" class="btn btn-dark btn-lg" value="Nova Empresa"></a>
         </div>
 
     </body>

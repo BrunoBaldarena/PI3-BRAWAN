@@ -92,7 +92,9 @@ public class EmpresaServlet extends HttpServlet {
 
         EmpresaDAO dao = new EmpresaDAO();
         dao.inserir(empresa);
-        response.sendRedirect("./ConsultarEmpresa");
+         request.setAttribute("msgSucess", "Filial cadastrada com sucesso no Sistema!");
+        request.getRequestDispatcher("./jsp/empresa/cadastroEmpresa.jsp")
+        .forward(request, response);
     }
 
     protected void empresaConsultar(HttpServletRequest request, HttpServletResponse response)
@@ -168,7 +170,9 @@ public class EmpresaServlet extends HttpServlet {
 
         empresa.setId(id);
         dao.inativar(empresa);
-        response.sendRedirect("./ConsultarEmpresa");
+        request.setAttribute("msgDelete", "Filial Excluida com sucesso!");
+        request.getRequestDispatcher("./ConsultarEmpresa")
+        .forward(request, response);
 
     }
 }

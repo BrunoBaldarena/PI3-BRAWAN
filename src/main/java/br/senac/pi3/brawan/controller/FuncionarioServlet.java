@@ -4,6 +4,7 @@ import br.senac.pi3.brawan.DAO.EmpresaDAO;
 import br.senac.pi3.brawan.DAO.FuncionarioDAO;
 import br.senac.pi3.brawan.model.Empresa;
 import br.senac.pi3.brawan.model.Funcionario;
+import br.senac.pi3.brawan.service.Criptografar;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
@@ -38,7 +39,7 @@ public class FuncionarioServlet extends HttpServlet {
                 funcionarioInativar(request, response);
             } else if (pagina.endsWith("ConsultarFuncionarioId")) {
                 funcionarioConsultarID(request, response);
-            }else if (pagina.endsWith("FuncionarioEditar01")) {
+            } else if (pagina.endsWith("FuncionarioEditar01")) {
                 funcionarioEditar01(request, response);
             }
         } catch (Exception ex) {
@@ -117,12 +118,15 @@ public class FuncionarioServlet extends HttpServlet {
             func.setEmpresa(empresa);
             func.setCargo(cargo);
             func.setLogin(Usuario);
-            func.setSenha(senha);
+            func.setSenha(Criptografar.criptografar(senha));
 
             FuncionarioDAO dao = new FuncionarioDAO();
             dao.inserir(func);
 
-            response.sendRedirect("./FuncionarioConsult");
+            request.setAttribute("msgSucess", "Funcionario cadastrado com sucesso no Sistema!");
+            request.getRequestDispatcher("./jsp/funcionario/cadastroFuncionario.jsp")
+                    .forward(request, response);
+
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
@@ -153,7 +157,11 @@ public class FuncionarioServlet extends HttpServlet {
 
         func.setId(id);
         dao.inativar(func);
-        response.sendRedirect("./FuncionarioConsult");
+        
+        request.setAttribute("msgDelete", "Funcionario Excluido com sucesso!");
+        request.getRequestDispatcher("./FuncionarioConsult")
+        .forward(request, response);
+    
 
     }
 
@@ -193,7 +201,6 @@ public class FuncionarioServlet extends HttpServlet {
         ArrayList<Funcionario> func = dao.listarID(id);
         ArrayList<Empresa> emp = dao2.listarTudo();
 
-
         RequestDispatcher rd = request.getRequestDispatcher("./jsp/funcionario/editarFuncionario.jsp");
         request.setAttribute("funcionario", func);
         request.setAttribute("empresa", emp);
@@ -204,7 +211,7 @@ public class FuncionarioServlet extends HttpServlet {
             throws ServletException, IOException {
 
         try {
-            
+
             int id = Integer.parseInt(request.getParameter("id"));
             String nome = request.getParameter("nome");
             String rg = request.getParameter("rg");
@@ -221,9 +228,9 @@ public class FuncionarioServlet extends HttpServlet {
             String cargo = request.getParameter("cargo");
             String Usuario = request.getParameter("usuario");
             String senha = request.getParameter("senha");
-            
+
             Funcionario func = new Funcionario();
-            
+
             func.setId(id);
             func.setNome(nome);
             func.setRg(rg);
@@ -240,8 +247,7 @@ public class FuncionarioServlet extends HttpServlet {
             func.setCargo(cargo);
             func.setLogin(Usuario);
             func.setSenha(senha);
-            
-            
+
             FuncionarioDAO dao = new FuncionarioDAO();
             dao.editar(func);
             response.sendRedirect("./FuncionarioConsult");

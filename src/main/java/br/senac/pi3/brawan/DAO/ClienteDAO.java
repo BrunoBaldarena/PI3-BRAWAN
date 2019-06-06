@@ -11,8 +11,11 @@ import java.util.ArrayList;
 
 public class ClienteDAO {
 
+    //Chama a conexao com o banco de dados 
     Connection connection = ConnectionUtils.getConnection();
 
+    
+    //Método que insere cliente no banco de dados
     public void inserir(Pessoa cliente) {
 
         try {
@@ -44,6 +47,7 @@ public class ClienteDAO {
         }
     }
 
+    //Metodo que busca todos os dados do cliente e adiciona em uma lista
     public ArrayList<Pessoa> listarTudo() {
         String SQL = "SELECT * FROM CLIENTE WHERE TG_STATUS=0";
         ArrayList<Pessoa> lista = new ArrayList<Pessoa>();
@@ -72,6 +76,7 @@ public class ClienteDAO {
         return lista;
     }
 
+    // Metodo que procura pro cliente atraves do ID no banco e coloca em uma lista
     public ArrayList<Pessoa> listarID(int id) {
         String SQL = "SELECT * FROM CLIENTE WHERE ID = " + id + " AND TG_STATUS=0";
         ArrayList<Pessoa> lista = new ArrayList<Pessoa>();
@@ -108,6 +113,7 @@ public class ClienteDAO {
 
     }
 
+    // Metodo para editar cliente
     public void Editar(Pessoa cliente) {
 
         try {
@@ -140,6 +146,7 @@ public class ClienteDAO {
         }
     }
 
+    // Metodo que seta 0 para TG_STATUS inativando logicamente o elemento
     public void inativar(Pessoa cliente)
             throws SQLException, Exception {
         try {

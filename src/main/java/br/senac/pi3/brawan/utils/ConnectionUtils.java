@@ -9,6 +9,7 @@ Abrir conexão com banco de dados MySQL
  */
 public class ConnectionUtils {
 
+    //Metodo conecta com o Banco de dados
     public static Connection getConnection() {
 
         try {

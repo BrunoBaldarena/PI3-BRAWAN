@@ -1,6 +1,5 @@
 package br.senac.pi3.brawan.DAO;
 
-import br.senac.pi3.brawan.model.ItemVenda;
 import br.senac.pi3.brawan.model.Produto;
 import br.senac.pi3.brawan.model.Venda;
 import br.senac.pi3.brawan.utils.ConnectionUtils;
@@ -13,8 +12,10 @@ import java.util.ArrayList;
 
 public class VendasDAO {
 
+    //Chamando a conexao com banco de dados
     Connection connection = ConnectionUtils.getConnection();
 
+    //Selecionando determinado dado da tabela e adicionando em uma lista 
     public ArrayList<Produto> listarCod(String cod) {
         String SQL = "SELECT * FROM PRODUTO WHERE CODIGO = " + cod + " AND TG_STATUS=0";
         ArrayList<Produto> lista = new ArrayList<Produto>();
@@ -48,6 +49,7 @@ public class VendasDAO {
         return lista;
     }
 
+    //Metodo que insere todos os itens vendidos no banco de dados
     public void inserirItemVenda(int cod, float soma) {
 
         try {
@@ -68,6 +70,7 @@ public class VendasDAO {
 
     }
 
+    //Metodo que adiciona a venda com todas as informacoes no banco de dados
     public void finalizarVenda(Venda venda, Object caixa, Object cpf) {
 
         try {
@@ -77,15 +80,15 @@ public class VendasDAO {
 
             ResultSet resultado = buscaCaixa.executeQuery("SELECT FUN.ID, FUN.FK_EMPRESA FROM FUNCIONARIO AS FUN "
                     + "WHERE LOGIN LIKE '" + caixa + "%'");
-            
-            ResultSet resultado2= buscaCliente.executeQuery("SELECT CLI.ID FROM CLIENTE AS CLI "
-                    + "WHERE CPF LIKE '"+cpf+"%'");
+
+            ResultSet resultado2 = buscaCliente.executeQuery("SELECT CLI.ID FROM CLIENTE AS CLI "
+                    + "WHERE CPF LIKE '" + cpf + "%'");
 
             if (resultado != null && resultado.next()) {
                 venda.setIdCaixa(resultado.getInt("FUN.ID"));
                 venda.setEmpresa(resultado.getInt("FUN.FK_EMPRESA"));
             }
-            
+
             if (resultado2 != null && resultado2.next()) {
                 venda.setIdCliente(resultado2.getInt("CLI.ID"));
             }
@@ -106,53 +109,55 @@ public class VendasDAO {
         }
 
     }
-    
-     public boolean buscarCliente(String cpf) {
-                                    
+
+    //Metodo que busca o cliente no banco e retorna um Boolean
+    public boolean buscarCliente(String cpf) {
+
         try {
-       
+
             Statement buscaCliente = connection.createStatement();
-            
-            ResultSet resultado= buscaCliente.executeQuery("SELECT CLI.ID FROM CLIENTE AS CLI WHERE CPF LIKE '"+cpf +"%' AND TG_STATUS LIKE 0;");
-            
+
+            ResultSet resultado = buscaCliente.executeQuery("SELECT CLI.ID FROM CLIENTE AS CLI WHERE CPF LIKE '" + cpf + "%' AND TG_STATUS LIKE 0;");
+
             if (resultado != null && resultado.next()) {
-                return true; 
-                
-            }else{
-                return false; 
+                return true;
+
+            } else {
+                return false;
             }
-            
+
         } catch (SQLException ex) {
-           return false;
-           
+            return false;
+
         }
-        
+
     }
-     
-     public boolean buscarProduto(String cod) {
-                                    
+
+    //Metodo que busca produto no banco de dados e retorna um boolean
+    public boolean buscarProduto(String cod) {
+
         try {
-       
+
             Statement buscaProduto = connection.createStatement();
-            
-            ResultSet resultadoProduto= buscaProduto.executeQuery("SELECT PRO.ID FROM PRODUTO AS PRO WHERE CODIGO LIKE '"+cod+"%';");
-            
+
+            ResultSet resultadoProduto = buscaProduto.executeQuery("SELECT PRO.ID FROM PRODUTO AS PRO WHERE CODIGO LIKE '" + cod + "%';");
+
             if (resultadoProduto != null && resultadoProduto.next()) {
-                return true; 
-                
-            }else{
-                return false; 
+                return true;
+
+            } else {
+                return false;
             }
-            
+
         } catch (SQLException ex) {
-           return false;
-           
+            return false;
+
         }
-        
+
     }
-     
-     
-     public void atualizarEstoque(int estoqueAtual, int idProduto) {
+
+    //Metodo que atualiza o banco de dados quando uma venda é finalizada
+    public void atualizarEstoque(int estoqueAtual, int idProduto) {
 
         try {
 
@@ -168,8 +173,5 @@ public class VendasDAO {
             throw new RuntimeException(ex);
         }
     }
-     
-     
-     
 
 }

@@ -1,7 +1,9 @@
 package br.senac.pi3.brawan.model;
 
+//Classe com todos os atributos de uma empresa com getter e setter
 public class Empresa {
     
+
     private int id;
     private String empresa;
     private String diretor;

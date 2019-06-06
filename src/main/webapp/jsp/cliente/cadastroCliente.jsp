@@ -42,15 +42,14 @@
             </button>
         </div>
     </c:if>
-
+    
+    
 
     <div class="container">
         <div class="d-flex justify-content-center">
             <div class="row">
                 <div class="col-md-16 main-section" >
                     <div class="modal-content">
-
-
                         <h1>Cadastrar Cliente</h1>
                         <form action="${pageContext.request.contextPath}/CadastrarCliente" method="post">
                             <div class="form-group">

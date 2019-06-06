@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Guto
  */
 @WebServlet(name = "ProdutoServlet", urlPatterns = {"/CadastrarProduto",
-    "/ConsultarProduto", "/ConsultarProdutoID", "/ProdutoInativar", 
+    "/ConsultarProduto", "/ConsultarProdutoID", "/ProdutoInativar",
     "/ProdutoEditar01", "/ProdutoEditar02"})
 public class ProdutoServlet extends HttpServlet {
 
@@ -55,9 +55,9 @@ public class ProdutoServlet extends HttpServlet {
         try {
             if (pagina.endsWith("CadastrarProduto")) {
                 produtoSalvar(request, response);
-            }else if(pagina.endsWith("ProdutoEditar02")){
+            } else if (pagina.endsWith("ProdutoEditar02")) {
                 produtoEditar02(request, response);
-                
+
             }
         } catch (IOException | ServletException ex) {
             throw new ServletException(ex.getMessage());
@@ -68,7 +68,7 @@ public class ProdutoServlet extends HttpServlet {
     protected void produtoSalvar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String codigo = request.getParameter("codigo"); 
+        String codigo = request.getParameter("codigo");
         String nome = request.getParameter("nome");
         String quantidade = request.getParameter("quantidade");
         String categoria = request.getParameter("categoriaProduto");
@@ -79,8 +79,6 @@ public class ProdutoServlet extends HttpServlet {
 
         Produto produto = new Produto();
 
-        
-        
         produto.setCodigo(codigo);
         produto.setNome(nome);
         produto.setQuantidade(Integer.parseInt(quantidade));
@@ -92,7 +90,9 @@ public class ProdutoServlet extends HttpServlet {
 
         ProdutoDAO dao = new ProdutoDAO();
         dao.inserir(produto);
-        response.sendRedirect("./ConsultarProduto");
+        request.setAttribute("msgSucess", "Produto cadastrado com sucesso no Sistema!");
+        request.getRequestDispatcher("./jsp/produto/cadastroProduto.jsp")
+                .forward(request, response);
 
     }
 
@@ -118,8 +118,6 @@ public class ProdutoServlet extends HttpServlet {
 
         } else {
 
-
-
             ProdutoDAO dao = new ProdutoDAO();
 
             ArrayList<Produto> pro = dao.listarCod(cod);
@@ -140,7 +138,9 @@ public class ProdutoServlet extends HttpServlet {
             produto.setCodigo(cod);
             ProdutoDAO dao = new ProdutoDAO();
             dao.inativar(produto);
-            response.sendRedirect("./ConsultarProduto");
+            request.setAttribute("msgDelete", "Produto Excluido com sucesso!");
+            request.getRequestDispatcher("./ConsultarProduto")
+                    .forward(request, response);
 
         } catch (Exception ex) {
             throw new RuntimeException(ex);
@@ -151,8 +151,6 @@ public class ProdutoServlet extends HttpServlet {
             throws ServletException, IOException {
 
         String cod = request.getParameter("cod");
-
-  
 
         ProdutoDAO dao = new ProdutoDAO();
 

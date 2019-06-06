@@ -61,6 +61,8 @@ public class VendaServlet extends HttpServlet {
     protected void carrinho(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, Exception {
 
+        HttpSession sessao = request.getSession(true);
+        
         // Verifica se as listas estao nulas
         if (pro == null && lista == null) {
             pro = new ArrayList();
@@ -72,7 +74,7 @@ public class VendaServlet extends HttpServlet {
 
         //Pega o cpf do cliente da pagina JSP
         String cpf = request.getParameter("cpfCliente");
-        
+
         //Validador se cliente consta no banco
         boolean cpfEhValido = venda.buscarCliente(cpf);
 
@@ -83,23 +85,20 @@ public class VendaServlet extends HttpServlet {
                     .forward(request, response);
         }
 
-        
         //Pega o cod do produto da pagina JSP
         String cod = request.getParameter("CodProduto");
-        
+
         //Validador se produto existe no banco
-        boolean produtoEhValido = venda.buscarProduto(cod.replace(" ", "")); 
-        
+        boolean produtoEhValido = venda.buscarProduto(cod.replace(" ", ""));
+
         if (produtoEhValido == false) {
-             pro.clear();
+            pro.clear();
             request.setAttribute("msgErroProduto", "Produto não cadastrado no sistema!");
             request.getRequestDispatcher("./jsp/vendas/carrinho.jsp")
                     .forward(request, response);
-            
+
         }
-        
-        
-        
+
         //Pega a qtd que o cliente deseja compra do produto
         int quantidade = Integer.parseInt(request.getParameter("Quantidade"));
 
@@ -142,9 +141,9 @@ public class VendaServlet extends HttpServlet {
         if (!pro.isEmpty()) {
 
             ItemVenda item = new ItemVenda();
-            
-            float valor = 0; 
-            
+
+            float valor = 0;
+
             // Seta os valores da lista produto na lista ItemVenda
             for (Produto list : pro) {
 
@@ -156,42 +155,38 @@ public class VendaServlet extends HttpServlet {
                 item.setValorUnitario(list.getValorUnitario());
 
             }
-            
+
             //Variavel que pega o valor total do item
             float valorTotalItem = quantidade * valor;
 
             item.setQuantidade(quantidade);
             item.setValorTotalItem(valorTotalItem);
             lista.add(item);
-            
+
             //A lista produto pode ser limpa, pois vou utilizar somente na prox chamada ao metodo
             pro.clear();
 
         }
 
-        HttpSession sessao = request.getSession(true);
+        
 
         if (cpfEhValido == true) {
-            
-        sessao.setAttribute("cpf", cpf);
-        sessao.setAttribute("lista", lista);
-        
-        }
 
+            
+            sessao.setAttribute("lista", lista);
+
+        }
+        sessao.setAttribute("cpf", cpf);
         RequestDispatcher rd = request.getRequestDispatcher("./jsp/vendas/carrinho.jsp");
         rd.forward(request, response);
 
     }
-    
-    
-    
 
     protected void excluirItem(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, Exception {
 
-       
         int id = Integer.parseInt(request.getParameter("id"));
-        
+
         //Percorre a lista e verifica se o ID é igual e exclui referente ao index
         for (int i = 0; i < lista.size(); i++) {
             if (lista.get(i).getId() == id) {
@@ -201,7 +196,7 @@ public class VendaServlet extends HttpServlet {
             }
 
         }
-        
+
         HttpSession sessao = request.getSession(true);
         RequestDispatcher rd = request.getRequestDispatcher("./jsp/vendas/carrinho.jsp");
         sessao.setAttribute("lista", lista);
@@ -212,15 +207,17 @@ public class VendaServlet extends HttpServlet {
 
     protected void venda02(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, Exception {
-        
+
         HttpSession sessao = request.getSession();
 
         VendasDAO dao = new VendasDAO();
-        Venda venda = new Venda();
-        int quantidadeTotal = 0;
-        float valorTotal = 0;
 
-     
+    
+
+            Venda venda = new Venda();
+            int quantidadeTotal = 0;
+            float valorTotal = 0;
+
             for (ItemVenda item : lista) {
                 dao.inserirItemVenda(item.getId(), item.getValorTotalItem());
                 quantidadeTotal = quantidadeTotal + item.getQuantidade();
@@ -228,38 +225,39 @@ public class VendaServlet extends HttpServlet {
                 valorTotal = valorTotal + valor;
             }
 
-            
-        //Atualiza estoque de produto    
-        for (int i = 0; i < lista.size(); i++) {
-            int estoqueAtual = lista.get(i).getQuantidadeEstoque() - lista.get(i).getQuantidade(); 
-            dao.atualizarEstoque(estoqueAtual, lista.get(i).getId());  
-        }
-        
+            //Atualiza estoque de produto    
+            for (int i = 0; i < lista.size(); i++) {
+                int estoqueAtual = lista.get(i).getQuantidadeEstoque() - lista.get(i).getQuantidade();
+                dao.atualizarEstoque(estoqueAtual, lista.get(i).getId());
+            }
 
-        // Se carrinho estiver vazio retorna com alerta 
-        if (valorTotal == 0) {
+            // Se carrinho estiver vazio retorna com alerta 
+            if (valorTotal == 0) {
+                lista.clear();
+                sessao.removeAttribute("lista");
+                request.setAttribute("MsgVazio", "O carrinho está vazio!");
+                request.getRequestDispatcher("./jsp/vendas/carrinho.jsp")
+                        .forward(request, response);
+
+            }
+
+            Object idCaixa = request.getSession().getAttribute("usuario");
+            Object cpfCliente = request.getSession().getAttribute("cpf");
+
+            venda.setQuantidade(quantidadeTotal);
+            venda.setValorTotal(valorTotal);
+            dao.finalizarVenda(venda, idCaixa, cpfCliente);
+
             lista.clear();
+
+            sessao.removeAttribute("cpf");
             sessao.removeAttribute("lista");
-            request.setAttribute("MsgVazio", "O carrinho está vazio!");
-            request.getRequestDispatcher("./jsp/vendas/carrinho.jsp")
-                    .forward(request, response);
 
+            request.setAttribute("MsgSucesso", "Venda realizada com sucesso!");
+
+            RequestDispatcher rd = request.getRequestDispatcher("./jsp/vendas/carrinho.jsp");
+            rd.forward(request, response);
         }
-
-        Object idCaixa = request.getSession().getAttribute("usuario");
-        Object cpfCliente = request.getSession().getAttribute("cpf");
-
-        venda.setQuantidade(quantidadeTotal);
-        venda.setValorTotal(valorTotal);
-        dao.finalizarVenda(venda, idCaixa, cpfCliente);
-
-        lista.clear();
-
-        sessao.removeAttribute("cpf");
-        sessao.removeAttribute("lista");
-
-        RequestDispatcher rd = request.getRequestDispatcher("./jsp/vendas/carrinho.jsp");
-        rd.forward(request, response);
     }
 
-}
+

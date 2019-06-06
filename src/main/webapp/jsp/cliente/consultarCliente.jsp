@@ -36,6 +36,15 @@
             </div>
         </c:if>
 
+    <c:if test="${msgSucessEditado != null}">
+            <div class="alert alert-success" role="alert">
+                ${msgSucessEditado}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </c:if>
+
         <div class="container main-section" id="row">
             <div class="table-responsive">
                 <div class="modal-content">
@@ -84,19 +93,19 @@
                                 </tr>
                             </c:forEach>
                         </tbody>
-                        
-                
+
+
 
                     </table>
-                    
-                    
-                   
+
+
+
                 </div>
-                    <a href="${pageContext.request.contextPath}/jsp/home.jsp"><input type="button" class="btn btn-dark btn-lg" value="Voltar"></a>
-                    <a href="${pageContext.request.contextPath}/jsp/cliente/cadastroCliente.jsp"><input type="button" class="btn btn-dark btn-lg" value="Novo Cliente"></a>
+                <a href="${pageContext.request.contextPath}/jsp/home.jsp"><input type="button" class="btn btn-dark btn-lg" value="Voltar"></a>
+                <a href="${pageContext.request.contextPath}/jsp/cliente/cadastroCliente.jsp"><input type="button" class="btn btn-dark btn-lg" value="Novo Cliente"></a>
             </div>
-                    
-                             
+
+
         </div>
 
     </body>

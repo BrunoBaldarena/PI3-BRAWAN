@@ -78,10 +78,19 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 
+                               
                                 <a class="dropdown-item" href="${pageContext.request.contextPath}/jsp/vendas/carrinho.jsp">Venda</a>
-                                <a class="dropdown-item" href="${pageContext.request.contextPath}/Logout">Logout</a>
+                                 <a class="dropdown-item" href="${pageContext.request.contextPath}/RelatorioInicio">Relatório</a>
+                                
                                 
                             </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            
+                            
+                            <a href="${pageContext.request.contextPath}/Logout" class="btn btn-outline-light btn-sm">Logout</a>
+                     <!--       <a class="dropdown-item" href="${pageContext.request.contextPath}/Logout">Logout</a>-->
+                            
                         </li>
 
                     </ul>

@@ -7,7 +7,7 @@
 
         <meta charset="utf-8"> 
 
-                <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/form.css">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/form.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -20,6 +20,8 @@
     </head>
 
     <body>
+
+      
 
         <div class="container">
             <div class="d-flex justify-content-center">
@@ -38,22 +40,22 @@
 
                                     <div class="form-group">
                                         <label for="nome">Nome*</label>
-                                        <input type="text" class="form-control" value="${cli.getNome()}" name="nome" id="nome" placeholder="Nome Completo" required>
+                                        <input type="text" class="form-control" value="${cli.getNome()}" name="nome" id="nome" placeholder="Nome Completo"  required>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="rg">RG</label>
-                                        <input type="text" class="form-control" value="${cli.getRg()}" name="rg" id="rg" placeholder="Digite o RG">
+                                        <input type="text" class="form-control" value="${cli.getRg()}" name="rg" id="rg" placeholder="Digite o RG" maxlength="12" OnKeyPress="formatar('##.###.###-#', this)">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="cpf">CPF*</label>
-                                        <input type="text" class="form-control" name="cpf" value="${cli.getCpf()}" id="cpf" placeholder="Digite o CPF" required>
+                                        <input type="text" class="form-control" name="cpf" value="${cli.getCpf()}" id="cpf" placeholder="Digite o CPF" maxlength="14" OnKeyPress="formatar('###.###.###/##', this)" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="cep">CEP</label>
-                                        <input type="text" class="form-control" name="cep" value="${cli.getCep()}" id="cep" placeholder="Digite o CEP">
+                                        <input type="text" class="form-control" name="cep" value="${cli.getCep()}" id="cep" placeholder="Digite o CEP"  maxlength="9" OnKeyPress="formatar('#####-###', this)">
                                     </div>
 
                                     <div class="form-group">
@@ -84,7 +86,7 @@
 
                                     <div class="form-group">
                                         <label for="telefone">Tel/Cel</label>
-                                        <td><input type="text" class="form-control" name="telefone" value="${cli.getTelefone()}" id="telefone" placeholder="(DDD) XXXXX-XXXX"</td>
+                                        <td><input type="text" class="form-control" name="telefone" value="${cli.getTelefone()}" id="telefone" placeholder="(DDD) XXXXX-XXXX" maxlength="13" OnKeyPress="formatar('##-#####-#####', this)"></td>
                                     </div>
 
                                     <div class="form-group">
@@ -128,6 +130,27 @@
                             });
                 });
             });
+
+            function somenteNumeros(num) {
+                var er = /[^0-9.]/;
+                er.lastIndex = 0;
+                var campo = num;
+                if (er.test(campo.value)) {
+                    campo.value = "";
+                }
+            }
+
+
+            function formatar(mascara, documento) {
+                var i = documento.value.length;
+                var saida = mascara.substring(0, 1);
+                var texto = mascara.substring(i);
+
+                if (texto.substring(0, 1) !== saida) {
+                    documento.value += texto.substring(0, 1);
+                }
+
+            }
 
         </script>
 

@@ -1,5 +1,7 @@
 package br.senac.pi3.brawan.model;
 
+
+//Classe com atributo itens de venda com getter e setter
 public class ItemVenda {
 
   //  private Produto produto;

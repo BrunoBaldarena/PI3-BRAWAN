@@ -4,6 +4,8 @@
 <html lang="pt-br">
     <head>
         <meta charset="utf-8"> 
+        
+         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/form.css">
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
@@ -17,10 +19,19 @@
     </head>
 
     <body>
+        
+         <c:if test="${msgDelete != null}">
+            <div class="alert alert-danger" role="alert">
+                ${msgDelete}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </c:if>
 
-        <div class="container" id="row">
+         <div class="container main-section" id="row">
             <div class="table-responsive">
-
+<div class="modal-content">
                 <h1>Consultar Produto</h1><br>
                 <form action="${pageContext.request.contextPath}/ConsultarProdutoID" method="get">
                     <div class="col-md-3">
@@ -73,8 +84,10 @@
 
                     </tbody>
                 </table>
-                <a href="${pageContext.request.contextPath}/jsp/home.jsp"><input type="button" class="btn btn-outline-dark btn-lg" value="Voltar"></a>
-                <a href="${pageContext.request.contextPath}/jsp/produto/cadastroProduto.jsp"><input type="button" class="btn btn-outline-primary btn-lg" value="Novo Produto"></a>
+               
+            </div>
+                     <a href="${pageContext.request.contextPath}/jsp/home.jsp"><input type="button" class="btn btn-dark btn-lg" value="Voltar"></a>
+                <a href="${pageContext.request.contextPath}/jsp/produto/cadastroProduto.jsp"><input type="button" class="btn btn-dark btn-lg" value="Novo Produto"></a>
             </div>
         </div>
     </body>

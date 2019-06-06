@@ -1,9 +1,6 @@
 package br.senac.pi3.brawan.model;
 
-/**
- *
- * @author Guto
- */
+// classe com todos os atributos de uma pessoa com getter e setter
 public class Pessoa {
     
     private int id;

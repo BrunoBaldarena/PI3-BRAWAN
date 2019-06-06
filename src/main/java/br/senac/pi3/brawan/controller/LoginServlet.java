@@ -18,12 +18,12 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
 
         String usuario = request.getParameter("usuario");
-        String senhaAberta = request.getParameter("senha");
+        String senha = request.getParameter("senha");
 
         LoginDAO dao = new LoginDAO();
         Funcionario login = new Funcionario();
         login.setLogin(usuario);
-        login.setSenha(senhaAberta);
+        login.setSenha(senha);
 
         boolean retorno = dao.login(login);
 

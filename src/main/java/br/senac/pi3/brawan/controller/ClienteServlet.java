@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "ClienteServlet", urlPatterns = {"/CadastrarCliente",
     "/ConsultarCliente", "/ConsultarClienteID", "/ClienteEditar01",
@@ -160,6 +161,8 @@ public class ClienteServlet extends HttpServlet {
     protected void clienteEditar02(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        HttpSession sessao = request.getSession(true);
+        
         int id = Integer.parseInt(request.getParameter("id"));
         String nome = request.getParameter("nome");
         String rg = request.getParameter("rg");
@@ -186,9 +189,10 @@ public class ClienteServlet extends HttpServlet {
         cliente.setCidade(cidade);
         cliente.setUf(estado);
         cliente.setCep(cep);
-
+                
         ClienteDAO dao = new ClienteDAO();
         dao.Editar(cliente);
+        request.setAttribute("msgSucessEditado", "Cliente alterado com sucesso!");
         response.sendRedirect("./ConsultarCliente");
     }
 
@@ -207,6 +211,6 @@ public class ClienteServlet extends HttpServlet {
         request.setAttribute("msgDelete", "Cliente Excluido com sucesso!");
         request.getRequestDispatcher("./ConsultarCliente")
         .forward(request, response);
- 
+
     }
 }

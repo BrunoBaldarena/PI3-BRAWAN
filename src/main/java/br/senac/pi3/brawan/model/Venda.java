@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+//Clase com todos os atributos de uma venda com getter e setter
 public class Venda {
     
     private int codigoVenda;

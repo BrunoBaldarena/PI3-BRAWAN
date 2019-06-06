@@ -1,6 +1,8 @@
 package br.senac.pi3.brawan.service;
 
 public class validarCPF {
+    
+    //Metodo que valida o CPF e retorna um Boolean
 
     private static final int[] pesoCPF = {11, 10, 9, 8, 7, 6, 5, 4, 3, 2};
 
