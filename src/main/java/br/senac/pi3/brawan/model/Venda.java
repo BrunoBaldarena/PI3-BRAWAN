@@ -1,6 +1,5 @@
 package br.senac.pi3.brawan.model;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -10,15 +9,11 @@ public class Venda {
     private int codigoVenda;
     private Date dataVenda;
     private float valorTotal;
-    private List<ItemVenda> itens;
     private int IdCliente;
     private int idCaixa;
     private int quantidade;
     private int empresa;
     
-    public Venda() {
-        this.itens = new ArrayList<ItemVenda>();
-    }
 
     public int getCodigoVenda() {
         return codigoVenda;
@@ -44,13 +39,7 @@ public class Venda {
         this.valorTotal = valorTotal;
     }
 
-    public List<ItemVenda> getItens() {
-        return itens;
-    }
 
-    public void setItens(List<ItemVenda> itens) {
-        this.itens = itens;
-    }
 
     public int getIdCliente() {
         return IdCliente;
